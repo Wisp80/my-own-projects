@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Randomizer of Isaac characters</title>
+    <style>
+        .random-buttons {
+            text-align: center;
+        }
+
+        .bosses {
+            text-align: center;
+        }
+
+        .characters {
+            text-align: center;
+        }
+
+        .tainted-characters {
+            text-align: center;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .random-button {
+            height: 100px;
+            width: 160px;
+            font-size: large;
+            font-family: Tahoma;
+            margin-top: 70px;
+            background-color: rgb(6, 98, 110);
+            color: white;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        body {
+            background-image: url(./src/isaac-background.png);
+        }
+
+        .green {
+            background-color: rgb(42, 240, 42);
+        }
+
+        .images {
+            border: white 3px solid;
+            width: 220px;
+            height: 280px;
+            margin-top: 5px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="random-buttons">
+        <button class="random-button" onclick="randomCharacters();">Выбрать рандомного персонажа</button>
+        <button class="random-button" onclick="randomTaintedCharacters();">Выбрать рандомного альт персонажа</button>
+        <button class="random-button" onclick="randomBosses();">Выбрать рандомного босса</button>
+    </div>
+
+    <div class="images">
+        <div class="characters">
+            <img src="./src/characters/appolion.png" class="hidden">
+            <img src="./src/characters/azazel.png" class="hidden">
+            <img src="./src/characters/bethany.png" class="hidden">
+            <img src="./src/characters/blue-baby.png" class="hidden">
+            <img src="./src/characters/cain.png" class="hidden">
+            <img src="./src/characters/eden.png" class="hidden">
+            <img src="./src/characters/eve.png" class="hidden">
+            <img src="./src/characters/forgotten.png" class="hidden">
+            <img src="./src/characters/isaac.png" class="hidden">
+            <img src="./src/characters/jacob-and-easu.png" class="hidden">
+            <img src="./src/characters/judas.png" class="hidden">
+            <img src="./src/characters/keeper.png" class="hidden">
+            <img src="./src/characters/lazarus.png" class="hidden">
+            <img src="./src/characters/lilith.png" class="hidden">
+            <img src="./src/characters/lost.png" class="hidden">
+            <img src="./src/characters/mag.png" class="hidden">
+            <img src="./src/characters/samson.png" class="hidden">
+        </div>
+
+        <div class="tainted-characters">
+            <img src="./src/t-characters/t-appollyon.webp" class="hidden">
+            <img src="./src/t-characters/t-azazel.webp" class="hidden">
+            <img src="./src/t-characters/t-bethany.webp" class="hidden">
+            <img src="./src/t-characters/t-blue-baby.webp" class="hidden">
+            <img src="./src/t-characters/t-cain.webp" class="hidden">
+            <img src="./src/t-characters/t-eden.webp" class="hidden">
+            <img src="./src/t-characters/t-eve.webp" class="hidden">
+            <img src="./src/t-characters/t-forgotten.webp" class="hidden">
+            <img src="./src/t-characters/t-isaac.webp" class="hidden">
+            <img src="./src/t-characters/t-jacob.webp" class="hidden">
+            <img src="./src/t-characters/t-judas.webp" class="hidden">
+            <img src="./src/t-characters/t-keeper.webp" class="hidden">
+            <img src="./src/t-characters/t-lazarus.webp" class="hidden">
+            <img src="./src/t-characters/t-lilith.webp" class="hidden">
+            <img src="./src/t-characters/t-lost.webp" class="hidden">
+            <img src="./src/t-characters/t-maggy.webp" class="hidden">
+            <img src="./src/t-characters/t-samson.webp" class="hidden">
+        </div>
+
+        <div class="bosses">
+            <img src="./src/bosses/beast.webp" class="hidden">
+            <img src="./src/bosses/boss-blue-baby.webp" class="hidden">
+            <img src="./src/bosses/boss-isaac.webp" class="hidden">
+            <img src="./src/bosses/delirium.webp" class="hidden">
+            <img src="./src/bosses/hush.webp" class="hidden">
+            <img src="./src/bosses/lamb.webp" class="hidden">
+            <img src="./src/bosses/mega-satan.webp" class="hidden">
+            <img src="./src/bosses/mom's-heart.webp" class="hidden">
+            <img src="./src/bosses/mother.webp" class="hidden">
+            <img src="./src/bosses/satan.webp" class="hidden">
+            <img src="./src/bosses/ultra-greed.webp" class="hidden">
+            <img src="./src/bosses/boss-rush.webp" class="hidden">
+        </div>
+    </div>
+    <script>
+        function randomCharacters() {
+            setTimeout(function () {
+                document.getElementsByClassName("random-buttons")[0].children[0].classList.add("green");
+            }, 0)
+
+            setTimeout(function () {
+                document.getElementsByClassName("random-buttons")[0].children[0].classList.remove("green");
+            }, 200)
+
+            for (let i = 0; i < document.getElementsByClassName("characters")[0].children.length; i++) {
+                document.getElementsByClassName("characters")[0].children[i].classList.add("hidden");
+            };
+
+            // setTimeout(function () {
+            //     for (let i = 0; i < document.getElementsByClassName("characters")[0].children.length; i++) {
+            //         document.getElementsByClassName("characters")[0].children[i].classList.add("hidden");
+            //     };
+            //     document.getElementsByClassName("characters")[0].children[Math.floor(Math.random() * 17)].classList.remove("hidden");
+            // }, 100)
+            // setTimeout(function () {
+            //     for (let i = 0; i < document.getElementsByClassName("characters")[0].children.length; i++) {
+            //         document.getElementsByClassName("characters")[0].children[i].classList.add("hidden");
+            //     };
+            //     document.getElementsByClassName("characters")[0].children[Math.floor(Math.random() * 17)].classList.remove("hidden");
+            // }, 150)
+            // setTimeout(function () {
+            //     for (let i = 0; i < document.getElementsByClassName("characters")[0].children.length; i++) {
+            //         document.getElementsByClassName("characters")[0].children[i].classList.add("hidden");
+            //     };
+            //     document.getElementsByClassName("characters")[0].children[Math.floor(Math.random() * 17)].classList.remove("hidden");
+            // }, 200)
+            // setTimeout(function () {
+            //     for (let i = 0; i < document.getElementsByClassName("characters")[0].children.length; i++) {
+            //         document.getElementsByClassName("characters")[0].children[i].classList.add("hidden");
+            //     };
+            //     document.getElementsByClassName("characters")[0].children[Math.floor(Math.random() * 17)].classList.remove("hidden");
+            // }, 250)
+            // setTimeout(function () {
+            //     for (let i = 0; i < document.getElementsByClassName("characters")[0].children.length; i++) {
+            //         document.getElementsByClassName("characters")[0].children[i].classList.add("hidden");
+            //     };
+            //     document.getElementsByClassName("characters")[0].children[Math.floor(Math.random() * 17)].classList.remove("hidden");
+            // }, 300)
+            // setTimeout(function () {
+            //     for (let i = 0; i < document.getElementsByClassName("characters")[0].children.length; i++) {
+            //         document.getElementsByClassName("characters")[0].children[i].classList.add("hidden");
+            //     };
+            //     document.getElementsByClassName("characters")[0].children[Math.floor(Math.random() * 17)].classList.remove("hidden");
+            // }, 400)
+            // setTimeout(function () {
+            //     for (let i = 0; i < document.getElementsByClassName("characters")[0].children.length; i++) {
+            //         document.getElementsByClassName("characters")[0].children[i].classList.add("hidden");
+            //     };
+            //     document.getElementsByClassName("characters")[0].children[Math.floor(Math.random() * 17)].classList.remove("hidden");
+            // }, 500)
+            // setTimeout(function () {
+            //     for (let i = 0; i < document.getElementsByClassName("characters")[0].children.length; i++) {
+            //         document.getElementsByClassName("characters")[0].children[i].classList.add("hidden");
+            //     };
+            //     document.getElementsByClassName("characters")[0].children[Math.floor(Math.random() * 17)].classList.remove("hidden");
+            // }, 700)
+            // setTimeout(function () {
+            //     for (let i = 0; i < document.getElementsByClassName("characters")[0].children.length; i++) {
+            //         document.getElementsByClassName("characters")[0].children[i].classList.add("hidden");
+            //     };
+            //     document.getElementsByClassName("characters")[0].children[Math.floor(Math.random() * 17)].classList.remove("hidden");
+            // }, 900)
+            // setTimeout(function () {
+            //     for (let i = 0; i < document.getElementsByClassName("characters")[0].children.length; i++) {
+            //         document.getElementsByClassName("characters")[0].children[i].classList.add("hidden");
+            //     };
+            //     document.getElementsByClassName("characters")[0].children[Math.floor(Math.random() * 17)].classList.remove("hidden");
+            // }, 1200)
+
+            document.getElementsByClassName("characters")[0].children[Math.floor(Math.random() * 17)].classList.remove("hidden");
+        };
+
+        function randomTaintedCharacters() {
+            setTimeout(function () {
+                document.getElementsByClassName("random-buttons")[0].children[1].classList.add("green");
+            }, 0)
+
+            setTimeout(function () {
+                document.getElementsByClassName("random-buttons")[0].children[1].classList.remove("green");
+            }, 200)
+
+            for (let i = 0; i < document.getElementsByClassName("tainted-characters")[0].children.length; i++) {
+                document.getElementsByClassName("tainted-characters")[0].children[i].classList.add("hidden");
+            };
+
+            document.getElementsByClassName("tainted-characters")[0].children[Math.floor(Math.random() * 17)].classList.remove("hidden");
+        };
+
+        function randomBosses() {
+            setTimeout(function () {
+                document.getElementsByClassName("random-buttons")[0].children[2].classList.add("green");
+            }, 0)
+
+            setTimeout(function () {
+                document.getElementsByClassName("random-buttons")[0].children[2].classList.remove("green");
+            }, 200)
+
+            for (let i = 0; i < document.getElementsByClassName("bosses")[0].children.length; i++) {
+                document.getElementsByClassName("bosses")[0].children[i].classList.add("hidden");
+            };
+
+            document.getElementsByClassName("bosses")[0].children[Math.floor(Math.random() * 12)].classList.remove("hidden");
+        };
+    </script>
+</body>
+
+<footer></footer>
+
+</html>

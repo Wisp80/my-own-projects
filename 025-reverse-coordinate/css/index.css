@@ -1,0 +1,37 @@
+#canvas {
+    border: 1px solid black;
+}
+
+.global-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.colors {
+    display: flex;
+    height: 105px;
+    width: 295px;
+}
+
+.color-button {
+    height: 40px;
+    width: 59px;
+}
+
+.range {
+    position: relative;
+    margin: auto;
+    padding-top: 50px;
+    padding-left: 50px;
+}
+
+.hint {
+    position: absolute;
+    color: rgb(0, 140, 255);
+    border: 1px solid rgb(255, 166, 2);
+}
+
+.size-input {
+    margin: 0px;
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Еж Соник</title>
+  <style>
+    .header {
+      text-align: center;
+      font-size: 40pt;
+      background-color: rgb(6, 140, 218);
+      color: black;
+    }
+
+    body {
+      margin: 0px;
+    }
+
+    .main-text {
+      font-size: 18pt;
+      border: 3px solid;
+      float: left;
+      padding: 10px;
+      margin: 6px;
+    }
+
+    .Sonic {
+      float: right;
+      border: 3px solid;
+      padding: 10px;
+      margin: 3px;
+    }
+
+    .Sonic-facts {
+      border: 3px solid;
+      padding: 10px;
+      margin: 10px;
+      width: 10%;
+      float: right;
+      font-size: 30px;
+
+    }
+
+    .Sonic2 {
+      width: 400px;
+      padding: 10px;
+      float: left;
+    }
+
+    .switch {
+      width: 50px;
+      height: 50px;
+    }
+
+    .light {
+      background-color: white;
+      color: black;
+      border-color: black;
+    }
+
+    .dark {
+      background-color: rgb(42, 42, 42);
+      color: rgb(190, 190, 190);
+      border-color: rgb(168, 168, 168);
+    }
+  </style>
+
+
+
+</head>
+
+<body>
+  <div class="header">
+    Еж Соник
+  </div>
+
+  <div class="main-text light">
+    Соник — главный персонаж серии видеоигр Соник от компании Sega, а также созданных на её</br>
+    основе комиксов, мультсериалов и полнометражных фильмов. Своё имя Соник получил за способность бегать на</br>
+    сверхзвуковых скоростях.</br>
+  </div>
+
+  <div class="Sonic light">
+    <img src="./src/sonic-generations-modern-sonic-2-2.png">
+  </div>
+
+  <div class="Sonic-facts light">
+    Вид:   Ёж</br>
+    Пол:   Мужской</br>
+    Возраст:   15</br>
+    Рост:   100см</br>
+  </div>
+
+  <div>
+    <img src="./src/e42ogdperjf41.webp" class="Sonic2 light">
+  </div>
+
+  <button class="switch" onclick="switchTheme();">
+    Тема🌗
+  </button>
+
+  <script>
+
+    var isThemeLight = true;
+
+    function switchTheme() {
+      if (isThemeLight) {
+        document.getElementsByClassName("main-text")[0].className = "main-text dark";
+        document.getElementsByClassName("Sonic")[0].className = "Sonic dark";
+        document.getElementsByClassName("Sonic-facts")[0].className = "Sonic-facts dark";
+        document.getElementsByClassName("Sonic2")[0].className = "Sonic2 dark";
+        document.getElementsByTagName("body")[0].className = "dark"
+        document.getElementsByClassName("header")[0].className = "header";
+        isThemeLight = !isThemeLight;
+      } else {
+        document.getElementsByClassName("main-text")[0].className = "main-text light";
+        document.getElementsByClassName("Sonic")[0].className = "Sonic light";
+        document.getElementsByClassName("Sonic-facts")[0].className = "Sonic-facts light";
+        document.getElementsByClassName("Sonic2")[0].className = "Sonic2 light";
+        document.getElementsByTagName("body")[0].className = "light"
+        isThemeLight = !isThemeLight;
+      }
+    }
+  </script>
+</body>
+
+<footer></footer>
+
+</html>

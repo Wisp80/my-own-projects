@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Mixing colors</title>
+
+    <link rel='stylesheet' href='css/index.css'>
+</head>
+
+<body>
+    <div class='global-container'>
+        <div class='first-summand-container'>
+            #<input type='text' id='hex-code-one'>
+            <button onclick="displayColor('color-square-one', separateHexCode('hex-code-one'))">Input</button>
+            <div class='color-square-one'></div>
+        </div>
+
+        <img src='./src/plus.jpg' class='plus-image'>
+
+        <div class='second-summand-container'>
+            #<input type='text' id='hex-code-two'>
+            <button onclick="displayColor('color-square-two', separateHexCode('hex-code-two'))">Input</button>
+            <div class='color-square-two'></div>
+        </div>
+
+        <img src='./src/equal.jpg' class='equal-image' onclick='mixColors()'>
+
+        <div>
+            <div class='hex-code-three'>#</div>
+            <div class='color-square-three'></div>
+        </div>
+
+    </div>
+
+    <script src='./js/index.js'></script>
+</body>
+
+<footer></footer>
+
+</html>

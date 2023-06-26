@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Mini paint</title>
+
+    <link rel='stylesheet' href='css/index.css'>
+</head>
+
+<body>
+    <div class="global-container">
+        <canvas id='canvas' class="canvas-one" width='1550' height='900' style="border: 3px solid black;"></canvas>
+
+        <div class="settings">
+            <div class="colors">
+                <button class="color-button" onclick="changeColor(this)">Red</button>
+                <button class="color-button" onclick="changeColor(this)">Green</button>
+                <button class="color-button" onclick="changeColor(this)">Blue</button>
+                <button class="color-button" onclick="changeColor(this)">Yellow</button>
+                <button class="color-button" onclick="changeColor(this)">Black</button>
+                <button class="color-button" onclick="changeColor(this)">White</button>
+            </div>
+
+            <div class="range">
+                <span class="hint"></span>
+                <input type='range' min='1' max='100' step='1' class="size-input" value='20'
+                    onchange='changeSize(this)'>
+            </div>
+
+        </div>
+    </div>
+
+    <script src='./js/index.js'></script>
+
+</body>
+
+<footer></footer>
+
+</html>

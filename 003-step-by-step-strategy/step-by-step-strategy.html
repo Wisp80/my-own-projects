@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Пошаговая стратегия боя</title>
+
+    <style>
+        body {
+            background-color: rgb(70, 109, 126);
+        }
+
+        .game {
+            text-align: center;
+        }
+
+        .name {
+            text-align: center;
+            font-size: 50px;
+            font-family: Impact;
+        }
+
+        .start-button {
+            width: 90px;
+            height: 60px;
+            font-size: 20px;
+            background-color: rgb(138, 255, 92);
+        }
+
+        .board {
+            width: 1000px;
+            height: 500px;
+            border: 5px solid black;
+            background-color: rgb(204, 204, 204);
+        }
+
+        .health {
+            border: 5px solid black;
+            width: 1000px;
+            height: 35px;
+            margin-top: 5px;
+            background-color: rgb(245, 71, 71);
+        }
+
+        .aai { 
+            text-align: center;
+            border: 5px solid black;
+            width: 1000px;
+            height: 35px;
+            margin-top: 5px;
+            background-color: rgb(126, 203, 226);
+        }
+
+        .attack {
+            width: 70px;
+            height: 35px;
+        }
+
+        .action {
+            width: 70px;
+            height: 35px;
+        }
+
+        .items {
+            width: 70px;
+            height: 35px;
+        }
+
+        .enemy {
+            width: 300px;
+            height: 165px;
+            border: 5px solid black;
+            margin-right: 5px;
+            margin-top: 5px;
+            float: right;
+            background-image: url(./src/diablo.jpg);
+        }
+
+        .visible {
+            display: block;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="game">
+        <div class="name">
+            Игра: пошаговая стратегия
+        </div> </br>
+
+        <button class="start-button" onclick="startGame();">
+            Играть
+        </button>
+
+        <div class="board hidden">
+            <div class="enemy"></div>
+        </div>
+
+        <div class="health hidden"></div>
+
+        <div class="aai hidden">
+            <button class="attack">Атака</button>
+            <button class="action">Действие</button>
+            <button class="items">Предметы</button>
+        </div>
+
+
+        <script>
+            function startCountdown() {
+              document.getElementsByClassName("board")
+            };
+
+            function startGame() {
+                document.getElementsByClassName("name")[0].classList = "hidden";
+                document.getElementsByClassName("start-button")[0].classList = "hidden";
+                document.getElementsByClassName("board")[0].classList = "board visible";
+                document.getElementsByClassName("aai")[0].classList = "aai visible";
+                document.getElementsByClassName("health")[0].classList = "health visible";
+                setTimeout()
+            };
+        </script>
+    </div>
+</body>
+
+<footer></footer>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Something</title>
+
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        .green-square {
+            height: 50px;
+            width: 50px;
+            background-color: rgb(41, 124, 47);
+        }
+
+        .brown-square {
+            height: 50px;
+            width: 50px;
+            background-color: rgb(110, 95, 35);
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick='xmasTree();' class='tree'>
+        🎄Ёлка
+    </button>
+
+    <canvas id='canvas' width='600' height='750' class="hidden" onclick="game.fillCanvasColor();"></canvas>
+
+    <div class="green-square hidden" id="square1" onclick="game.rememberColorGreen();"></div>
+    <div class="brown-square hidden" id="square2" onclick="game.rememberColorBrown();"></div>
+
+    <script src='./js/index.js'></script>
+</body>
+
+<footer></footer>
+
+</html>
