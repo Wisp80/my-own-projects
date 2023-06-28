@@ -1,33 +1,32 @@
-.global-container {
+* {
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+}
+
+.header {
+    text-align: center;
+    font-size: 70px;
+    margin-bottom: 50px;
+}
+
+.main-buttons-container {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
 }
 
-.colors {
-    display: flex;
-    height: 105px;
-    width: 295px;
-}
-
-.color-button {
-    height: 40px;
-    width: 59px;
-}
-
-.range {
-    position: relative;
-    margin: auto;
-    padding-top: 50px;
-    padding-left: 50px;
-}
-
-.hint {
-    position: absolute;
-    color: rgb(0, 140, 255);
-    border: 1px solid rgb(255, 166, 2);
-}
-
-.size-input {
-    margin: 0px;
+.main-button {
+    height: 50px;
+    width: 500px;
+    padding: 8px;
+    margin: 10px;
+    font-size: 30px;
 }
