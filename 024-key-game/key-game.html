@@ -6,14 +6,14 @@
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-    <title>game</title>
-    <meta name='description' content='game'>
+    <title>Key game</title>
+    <meta name='description' content='Key game'>
     <meta name='author' content='me'>
 
-    <meta property='og:title' content='game'>
+    <meta property='og:title' content='Key game'>
     <meta property='og:type' content='website'>
     <meta property='og:url' content='https://github.com/'>
-    <meta property='og:description' content='game'>
+    <meta property='og:description' content='Key game'>
     <meta property='og:image' content='image.png'>
 
     <link rel='icon' href='/favicon.ico'>
@@ -30,6 +30,47 @@
         <div class='main-buttons-container'>
             <button class='main-button' onclick="addNewNote();">Add new note</button>
             <button class='main-button'>View previous notes</button>
+        </div>
+    </div>
+
+    <div class="new-note">
+        <div class="new-note-characteristics">
+            <div class="cell">
+                <div class="name-of-cell">Дата:</div><input type="date" class="date">
+            </div>
+            <div class="cell">
+                <div class="name-of-cell">Первое число:</div><input class="number"></input>
+            </div>
+            <div class="cell">
+                <div class="name-of-cell">Второе число:</div><input class="number"></input>
+            </div>
+            <div class="cell">
+                <div class="name-of-cell">Третье число:</div><input class="number"></input>
+            </div>
+            <div class="cell">
+                <div class="name-of-cell">Четвертое число:</div><input class="number"></input>
+            </div>
+            <div class="cell">
+                <div class="name-of-cell">Пятое число:</div><input class="number"></input>
+            </div>
+            <div class="cell">
+                <div class="name-of-cell">Произведение:</div>
+                <div class="product"></div>
+            </div>
+            <div class="cell">
+                <div class="name-of-cell">Перевод:</div>
+                <div class="translate"></div>
+            </div>
+            <div class="cell">
+                <div class="name-of-cell">Сокращение:</div>
+                <div class="abbreviation"></div>
+            </div>
+            <button class="calculate-button" onclick="calculateThingsInNewNote();">Посчитать</button>
+        </div>
+
+        <div class="color-container">
+            <div class="color-square"></div>
+            <div class="name-of-the-color"></div>
         </div>
     </div>
 

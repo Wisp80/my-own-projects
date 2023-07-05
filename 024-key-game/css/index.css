@@ -30,3 +30,32 @@
     margin: 10px;
     font-size: 30px;
 }
+
+.new-note {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 140px;
+}
+
+.new-note-characteristics {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.date, .number, .product, .translate, .abbreviation, .calculate-button {
+    height: 60px;
+    width: 210px;
+    font-size: 30px;
+}
+
+.cell {
+    display: flex;
+    flex-direction: row;
+}
+
+.name-of-cell {
+    width: 210px;
+    font-size: 27px;
+}
