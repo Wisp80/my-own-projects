@@ -4,13 +4,13 @@ const ctx = canvas.getContext('2d');
 /*-------------------------------------------------------------------------------------------------------------*/
 
 let coordinatesOne = {
-    x: 10,
-    y: 10,
+    x: 1,
+    y: 2,
 };
 
 let coordinatesTwo = {
     reverseX: 1,
-    reverseY: 1
+    reverseY: 2
 };
 
 let iterator = 0;
@@ -39,12 +39,12 @@ function draw2() {
         
         ctx.stroke();
 
-        if (coordinatesOne.x === coordinatesTwo.reverseX || coordinatesOne.y === coordinatesTwo.reverseY) {
-            ctx.beginPath();
-            ctx.fillStyle = 'red';
-            ctx.arc(100, 75, 5, 0, 2 * Math.PI);
-            ctx.fill();
-        };
+        // if (coordinatesOne.x === coordinatesTwo.reverseX || coordinatesOne.y === coordinatesTwo.reverseY) {
+        //     ctx.beginPath();
+        //     ctx.fillStyle = 'red';
+        //     ctx.arc(100, 75, 5, 0, 2 * Math.PI);
+        //     ctx.fill();
+        // };
 
         iterator++;
     } else {
