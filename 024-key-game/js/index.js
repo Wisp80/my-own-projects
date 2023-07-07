@@ -22,16 +22,30 @@ function convertFromDecToHex(decNumber) {
 };
 
 function abbreviateTheHexadecimalNumber(hexNumber) {
-    if (hexNumber.length >= 6) {
-        let splittedHexNumber = hexNumber.split('');
+    let splittedHexNumber;
+    let edditedHexNumber;
+    if (hexNumber.length > 6) {
+        splittedHexNumber = hexNumber.split('');
         splittedHexNumber.pop();
-        document.getElementsByClassName('abbreviation')[0].innerHTML = splittedHexNumber.join('');
-    };    
-    return splittedHexNumber;
+        edditedHexNumber = splittedHexNumber.join('');
+        document.getElementsByClassName('abbreviation')[0].innerHTML = edditedHexNumber;
+    } else {
+        document.getElementsByClassName('abbreviation')[0].innerHTML = '-';
+        return hexNumber;
+    };
+
+    return edditedHexNumber;
+};
+
+function drawSquare(edditedHexNumber) {    
+    let color = '#' + edditedHexNumber;
+    document.getElementsByClassName('name-of-the-color')[0].innerHTML = color;
+    document.getElementsByClassName('color-square')[0].style.backgroundColor = color;
 };
 
 function calculateThingsInNewNote() {
     let product = multiplyNumbersInArray();
     let hexNumber = convertFromDecToHex(product);
-    abbreviateTheHexadecimalNumber(hexNumber);
+    let edditedHexNumber = abbreviateTheHexadecimalNumber(hexNumber);
+    drawSquare(edditedHexNumber);
 };

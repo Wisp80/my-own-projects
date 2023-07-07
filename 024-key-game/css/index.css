@@ -33,8 +33,9 @@
 
 .new-note {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
     margin-top: 140px;
 }
 
@@ -50,6 +51,13 @@
     font-size: 30px;
 }
 
+.save-button {
+    height: 60px;
+    width: 210px;
+    font-size: 30px;
+    margin-top: 250px;
+}
+
 .cell {
     display: flex;
     flex-direction: row;
@@ -58,4 +66,32 @@
 .name-of-cell {
     width: 210px;
     font-size: 27px;
+}
+
+.right-side-of-new-note-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 120px;
+}
+
+.color-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 300px;
+    border: 5px solid black;
+}
+
+.color-square {
+    width: 180px;
+    height: 180px;
+    margin-bottom: 35px;
+    border: 2px solid black;
+}
+
+.name-of-the-color {
+    font-size: 30px;
 }
