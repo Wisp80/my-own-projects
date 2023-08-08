@@ -4,13 +4,13 @@ const ctx = canvas.getContext('2d');
 /*-------------------------------------------------------------------------------------------------------------*/
 
 let coordinatesOne = {
-    x: 1,
-    y: 2,
+    x: 11,
+    y: 92,
 };
 
 let coordinatesTwo = {
     reverseX: 1,
-    reverseY: 2
+    reverseY: 1
 };
 
 let iterator = 0;
