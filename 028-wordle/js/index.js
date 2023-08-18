@@ -40,20 +40,46 @@ function drawTerminal() {
     };
 };
 
-function makeSpaces(xPos, yPos) {
-    let space = document.createElement('div');
-    space.style.position = "absolute";
-    space.style.left = xPos + 'px';
-    space.style.top = yPos + 'px';
-    space.style.backgroundColor = 'red';
-    console.log(space.style.height);
-    space.style.border = "1px solid black";
+/*-------------------------------------------------------------------------------------------------------------*/
+
+let hiddenWord = [
+    'п', 'а', 'н', 'д', 'а'
+];
+
+let attemptWords = {
+    firstAttemptWord: [
+        '', '', '', '', ''
+    ],
+
+    secondAttemptWord: [
+        '', '', '', '', ''
+    ],
+
+    thirdAttemptWord: [
+        '', '', '', '', ''
+    ],
+
+    fourthAttemptWord: [
+        '', '', '', '', ''
+    ],
+
+    fifthAttemptWord: [
+        '', '', '', '', ''
+    ],
+
+    sixthAttemptWord: [
+        '', '', '', '', ''
+    ]
 };
 
 /*-------------------------------------------------------------------------------------------------------------*/
 
-function fillWord() {
-    console.log('here');
+function fillWord(letter) {
+    let text = letter;
+
+    for (let x = 70; x < 520; x += 90) {
+        ctx.fillText(text, x, 60);
+    };
 };
 
 /*-------------------------------------------------------------------------------------------------------------*/
