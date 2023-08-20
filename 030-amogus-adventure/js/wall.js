@@ -24,8 +24,6 @@ let realWalls = {
         new Wall(1140, 513, 420, 40, helper.getRandomColor(), 20, 2),
         new Wall(1280, 553, 40, 181, helper.getRandomColor(), 21, 2),
         new Wall(1140, 660, 90, 40, helper.getRandomColor(), 22, 2),
-
-
     ],
 
     wallsRoom01: [
@@ -33,8 +31,6 @@ let realWalls = {
         new Wall(40, 0, canvas.width - 40, 40, helper.getRandomColor(), 1, 2),
         new Wall(canvas.width - 40, 40, 40, canvas.height - 40, helper.getRandomColor(), 2, 2),
         new Wall(0, canvas.height - 40, canvas.width - 40, 40, helper.getRandomColor(), 3, 2),
-
-        new Wall(100, 49, 40, 100, helper.getRandomColor(), 4, 2),
     ]
 };
 
@@ -70,14 +66,10 @@ function Wall(
     };
 
     this.draw = function () {
-        if (this.type === 1) {
-            ctx.fillStyle = 'white';
-        } else if (this.type === 2) {
-            ctx.fillStyle = this.color;
-        };
+        if (this.type === 1) { ctx.fillStyle = 'white' }
+        else if (this.type === 2) { ctx.fillStyle = this.color };
 
         ctx.fillRect(this.x, this.y, this.width, this.height);
-
         // this.drawWallsCoordinates();
         // this.drawWallsID();
     };

@@ -23,6 +23,11 @@ const game = {
             walls[i].draw();
         };
 
+        for (let i = 0; i < moveableWalls.length; i++) {
+            moveableWalls[i].draw();
+            // moveableWalls[i].move();
+        };
+
         for (let i = 0; i < portals.length; i++) {
             portals[i].draw();
         };
@@ -30,3 +35,4 @@ const game = {
         players.playerOne.draw();
     },
 };
+

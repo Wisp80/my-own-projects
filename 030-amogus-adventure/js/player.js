@@ -11,20 +11,20 @@ function Player(
     velocityX, friction,
     color
 ) {
-    this.x = 41;
-    this.y = 41;
+    this.x = 50;
+    this.y = 50;
     this.width = 40;
     this.height = 50;
     this.speedX = 0;
     this.speedY = 0;
-    this.maxSpeedX = 4;
-    this.maxSpeedY = 4;
+    this.maxSpeedX = 10;
+    this.maxSpeedY = 10;
     this.jumpHeight = 5;
     this.maxJumpHeight = 100;
     this.gravity = 3;
     this.downwardForce = 0;
     this.accelerationX = 1;
-    this.friction = 0.4; // [0; 1] трение, используется как множитель скорости для плавного торможения.
+    this.friction = 0; // [0; 1] трение, используется как множитель скорости для плавного торможения.
     this.color = 'orange';
     this.isActive = true; // Указывает активный ли для управления наш игрок.
 
@@ -33,7 +33,7 @@ function Player(
     this.predictedVerticalWayDown = null;
     this.predictedVerticalWayUp = null;
 
-    this.predictCollision = function () {
+    this.predictCollisionX = function () {
         /*Подготавливаем данные, где окажется игрок в следующий тик, если будет двигаться по X.*/
         let predictedHorizontalPosition = {
             x: this.x + this.speedX,
@@ -42,17 +42,8 @@ function Player(
             height: this.height
         };
 
-        /*Подготавливаем данные, где окажется игрок в следующий тик, если будет двигаться по Y.*/
-        let predictedVerticalPosition = {
-            x: this.x,
-            y: this.y + this.speedY,
-            width: this.width,
-            height: this.height
-        };
-
         /*Проверяем не будет ли коллизия по X или Y между игроком и стенами в следующем тике.*/
         for (let i = 0; i < walls.length; i++) { // Перебираем каждую стену.
-
             /*Проверяем не будет ли коллизии между игроком и стенами в следующем тике, если он будет двигаться по X.*/
             if (helper.checkIntersectionBetweenTwoNotRotatedRectangles(
                 predictedHorizontalPosition.x + predictedHorizontalPosition.width, walls[i].x,
@@ -80,7 +71,50 @@ function Player(
                 this.x = predictedHorizontalPosition.x;
                 this.speedX = 0;
             };
+        };
 
+        for (let i = 0; i < moveableWalls.length; i++) { // Перебираем каждую стену.
+            /*Проверяем не будет ли коллизии между игроком и стенами в следующем тике, если он будет двигаться по X.*/
+            if (helper.checkIntersectionBetweenTwoNotRotatedRectangles(
+                predictedHorizontalPosition.x + predictedHorizontalPosition.width, moveableWalls[i].x,
+                predictedHorizontalPosition.x, moveableWalls[i].x + moveableWalls[i].width,
+                predictedHorizontalPosition.y + predictedHorizontalPosition.height, moveableWalls[i].y,
+                predictedHorizontalPosition.y, moveableWalls[i].y + moveableWalls[i].height)
+            ) {
+                /*Если такая коллизия есть, то пока такая коллизия имеет место быть, сдвигаем по X предполагаемую
+                проекцию игрока, которая будет в следующем тике, ближе к текущей позиции игрока на 1 до тех пор, пока 
+                не пропадет коллизия между предполагаемой позицией игрока и какой-то стеной.*/
+                while (helper.checkIntersectionBetweenTwoNotRotatedRectangles(
+                    predictedHorizontalPosition.x + predictedHorizontalPosition.width, moveableWalls[i].x,
+                    predictedHorizontalPosition.x, moveableWalls[i].x + moveableWalls[i].width,
+                    predictedHorizontalPosition.y + predictedHorizontalPosition.height, moveableWalls[i].y,
+                    predictedHorizontalPosition.y, moveableWalls[i].y + moveableWalls[i].height)
+                ) {
+                    predictedHorizontalPosition.x -= Math.sign(this.speedX);
+                };
+
+                /*Как только мы перестанем сдвигать по X предполагаемую проекцию игрока, которая будет в следующем тике, ближе 
+                к текущей позиции игрока, то это будет означать, что мы имеем самую близку позицию игрока для следующего тика,
+                когда игрок будет касаться какой-то стены, но не проходит через нее. Поэтому указываем, что координата X
+                этой предполагаемой позиции должна быть текущей координатой X игрока и останавливаем игрока по X, чтобы он не
+                пытался двигаться дальше в стену, так как это приведет к бесконечной работе цикла "while".*/
+                this.x = predictedHorizontalPosition.x;
+                this.speedX = 0;
+            };
+        };
+    };
+
+    this.predictCollisionY = function () {
+        /*Подготавливаем данные, где окажется игрок в следующий тик, если будет двигаться по Y.*/
+        let predictedVerticalPosition = {
+            x: this.x,
+            y: this.y + this.speedY,
+            width: this.width,
+            height: this.height
+        };
+
+        /*Проверяем не будет ли коллизия по X или Y между игроком и стенами в следующем тике.*/
+        for (let i = 0; i < walls.length; i++) { // Перебираем каждую стену.
             /*Проверяем не будет ли коллизии между игроком и стенами в следующем тике, если он будет двигаться по Y.*/
             if (helper.checkIntersectionBetweenTwoNotRotatedRectangles(
                 predictedVerticalPosition.x + predictedVerticalPosition.width, walls[i].x,
@@ -110,8 +144,38 @@ function Player(
             };
         };
 
-        /*----------------------------*/
+        for (let i = 0; i < moveableWalls.length; i++) { // Перебираем каждую стену.
+            /*Проверяем не будет ли коллизии между игроком и стенами в следующем тике, если он будет двигаться по Y.*/
+            if (helper.checkIntersectionBetweenTwoNotRotatedRectangles(
+                predictedVerticalPosition.x + predictedVerticalPosition.width, moveableWalls[i].x,
+                predictedVerticalPosition.x, moveableWalls[i].x + moveableWalls[i].width,
+                predictedVerticalPosition.y + predictedVerticalPosition.height, moveableWalls[i].y,
+                predictedVerticalPosition.y, moveableWalls[i].y + moveableWalls[i].height)
+            ) {
+                /*Если такая коллизия есть, то пока такая коллизия имеет место быть, сдвигаем по Y предполагаемую
+                проекцию игрока, которая будет в следующем тике, ближе к текущей позиции игрока на 1 до тех пор, пока 
+                не пропадет коллизия между предполагаемой позицией игрока и какой-то стеной.*/
+                while (helper.checkIntersectionBetweenTwoNotRotatedRectangles(
+                    predictedVerticalPosition.x + predictedVerticalPosition.width, moveableWalls[i].x,
+                    predictedVerticalPosition.x, moveableWalls[i].x + moveableWalls[i].width,
+                    predictedVerticalPosition.y + predictedVerticalPosition.height, moveableWalls[i].y,
+                    predictedVerticalPosition.y, moveableWalls[i].y + moveableWalls[i].height)
+                ) {
+                    predictedVerticalPosition.y -= Math.sign(this.speedY);
+                };
 
+                /*Как только мы перестанем сдвигать по Y предполагаемую проекцию игрока, которая будет в следующем тике, ближе 
+                к текущей позиции игрока, то это будет означать, что мы имеем самую близку позицию игрока для следующего тика,
+                когда игрок будет касаться какой-то стены, но не проходит через нее. Поэтому указываем, что координата Y
+                этой предполагаемой позиции должна быть текущей координатой Y игрока и останавливаем игрока по Y, чтобы он не
+                пытался двигаться дальше в стену, так как это приведет к бесконечной работе цикла "while".*/
+                this.y = predictedVerticalPosition.y;
+                this.speedY = 0;
+            };
+        };
+    };
+
+    this.predictFastSpeedCollision = function () {
         /*Подготавливаем данные, описывающие путь, который игрок может пройти за следующий тик, если будет двигаться по X.*/
         if (Math.abs(this.speedX) > this.width) {
             if (this.speedX > 0) { // Если будет двигаться вправо.
@@ -306,7 +370,9 @@ function Player(
 
             /*----------------------------*/
 
-            this.predictCollision();
+            this.predictCollisionX();
+            this.predictCollisionY();
+            this.predictFastSpeedCollision();
 
             /*----------------------------*/
 
@@ -317,36 +383,6 @@ function Player(
     };
 
     this.checkIfPlayerCollidesWithPortal = function () {
-        // for (let i = 0; i < realPortals.length; i++) {
-        //     if (helper.checkIntersectionBetweenTwoNotRotatedRectangles(
-        //         this.x + this.width, portals[i].x,
-        //         this.x, portals[i].x + portals[i].width,
-        //         this.y + this.height, portals[i].y,
-        //         this.y, portals[i].y + portals[i].height)
-        //     ) {
-        //         walls = portals[i].destinationWalls;
-        //         portals = portals[i].destinationPortals;
-        //     };
-        // };
-
-        // for (let portal in realPortals) {
-
-        //     for (let i = 0; i < realPortals[portal].length; i++) {
-        //         if (helper.checkIntersectionBetweenTwoNotRotatedRectangles(
-        //             this.x + this.width, realPortals[portal][i].x,
-        //             this.x, realPortals[portal][i].x + realPortals[portal][i].width,
-        //             this.y + this.height, realPortals[portal][i].y,
-        //             this.y, realPortals[portal][i].y + realPortals[portal][i].height)) {
-
-        //             console.log('wallsRoom' + realPortals[portal][i].destinationWalls);
-        //             walls = realWalls['wallsRoom' + realPortals[portal][i].destinationWalls];
-        //             portals = realPortals['portalsRoom' + realPortals[portal][i].destinationPortals];
-        //         };
-
-        //         break;
-        //     };
-        // };
-
         for (let i = 0; i < realPortals['portalsRoom' + game.currentRoom].length; i++) {
             if (helper.checkIntersectionBetweenTwoNotRotatedRectangles(
                 this.x + this.width, realPortals['portalsRoom' + game.currentRoom][i].x,
@@ -356,13 +392,14 @@ function Player(
 
                 walls = realWalls['wallsRoom' + realPortals['portalsRoom' + game.currentRoom][i].destinationWalls];
                 portals = realPortals['portalsRoom' + realPortals['portalsRoom' + game.currentRoom][i].destinationPortals];
+                moveableWalls = realMoveableWalls['moveableWallsRoom' + realPortals['portalsRoom' + game.currentRoom][i].destinationMovableWalls];
 
                 for (let j = 0; j < realPortals['portalsRoom' + realPortals['portalsRoom' + game.currentRoom][i].destinationPortals].length; j++) {
                     if (realPortals['portalsRoom' + realPortals['portalsRoom' + game.currentRoom][i].destinationPortals][j].id ===
                         realPortals['portalsRoom' + game.currentRoom][i].destinationPortalID
                     ) {
-                        this.x = realPortals['portalsRoom' + realPortals['portalsRoom' + game.currentRoom][i].destinationPortals][j].x
-                        this.y = realPortals['portalsRoom' + realPortals['portalsRoom' + game.currentRoom][i].destinationPortals][j].y - this.height - 20;
+                        this.x = realPortals['portalsRoom' + realPortals['portalsRoom' + game.currentRoom][i].destinationPortals][j].x + this.width * 2 + 30;
+                        this.y = realPortals['portalsRoom' + realPortals['portalsRoom' + game.currentRoom][i].destinationPortals][j].y + 40;
                     };
                 };
 

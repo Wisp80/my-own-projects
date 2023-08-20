@@ -1,20 +1,20 @@
 let realPortals = {
     portalsRoom00: [
         new Portal(
-            1420, 690,
+            1390, 630,
             100, 130,
             helper.getRandomColor(), 0, '00',
-            '01', '01', 0,
+            '01', '01', 0, '01',
             './src/images/portal.png'
         )
     ],
 
     portalsRoom01: [
         new Portal(
-            canvas.width / 2 - 205, canvas.height / 2,
+            56, 52,
             100, 130,
             helper.getRandomColor(), 0, '01',
-            '00', '00', 0,
+            '00', '00', 0, '00',
             './src/images/portal.png'
         )
     ]
@@ -26,7 +26,7 @@ function Portal(
     x, y,
     width, height,
     color, id, room,
-    destinationWalls, destinationPortals, destinationPortalID,
+    destinationWalls, destinationPortals, destinationPortalID, destinationMovableWalls,
     src
 ) {
     this.x = x;
@@ -39,6 +39,7 @@ function Portal(
     this.destinationWalls = destinationWalls;
     this.destinationPortals = destinationPortals;
     this.destinationPortalID = destinationPortalID;
+    this.destinationMovableWalls = destinationMovableWalls;
     this.src = src;
 
     this.drawPortalCoordinates = function () {
@@ -69,3 +70,9 @@ function Portal(
 };
 
 game.tick();
+
+setInterval(() => {
+    for (let i = 0; i < moveableWalls.length; i++) {
+        moveableWalls[i].move();
+    };
+}, 1000);
