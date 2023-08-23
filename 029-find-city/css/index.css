@@ -1,0 +1,18 @@
+#canvas {
+    border: 1px solid black;
+}
+
+.global-container {
+    display: flex;
+}
+
+.find-city-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.word {
+    margin-left: 20px;
+    font-size: 70px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}

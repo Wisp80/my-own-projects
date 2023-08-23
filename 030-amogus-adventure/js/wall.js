@@ -21,7 +21,7 @@ let realWalls = {
         new Wall(710, 630, 290, 40, helper.getRandomColor(), 17, 2),
         new Wall(425, 477, 40, 245, helper.getRandomColor(), 18, 2),
         new Wall(1100, 410, 40, 290, helper.getRandomColor(), 19, 2),
-        new Wall(1140, 513, 420, 40, helper.getRandomColor(), 20, 2),
+        new Wall(1140, 513, 320, 40, helper.getRandomColor(), 20, 2),
         new Wall(1280, 553, 40, 181, helper.getRandomColor(), 21, 2),
         new Wall(1140, 660, 90, 40, helper.getRandomColor(), 22, 2),
     ],
@@ -31,10 +31,22 @@ let realWalls = {
         new Wall(40, 0, canvas.width - 40, 40, helper.getRandomColor(), 1, 2),
         new Wall(canvas.width - 40, 40, 40, canvas.height - 40, helper.getRandomColor(), 2, 2),
         new Wall(0, canvas.height - 40, canvas.width - 40, 40, helper.getRandomColor(), 3, 2),
+
+        new Wall(40, 200, 720, 40, helper.getRandomColor(), 4, 2),
+        new Wall(850, 240, 40, 104, helper.getRandomColor(), 5, 2),
+        new Wall(1430, 240, 40, 104, helper.getRandomColor(), 6, 2),
+        new Wall(350, 344, 40, 126, helper.getRandomColor(), 7, 2),
+        new Wall(40, 344, 310, 40, helper.getRandomColor(), 8, 2),
+        new Wall(490, 344, 40, 126, helper.getRandomColor(), 9, 2),
+        new Wall(530, 344, 770, 40, helper.getRandomColor(), 10, 2),
+        new Wall(890, 468, 190, 40, helper.getRandomColor(), 11, 2),
+        new Wall(1120, 468, 180, 40, helper.getRandomColor(), 12, 2),
+        new Wall(850, 592, 450, 40, helper.getRandomColor(), 13, 2),
+        new Wall(1340, 592, 220, 40, helper.getRandomColor(), 14, 2),
     ]
 };
 
-let walls = realWalls.wallsRoom00;
+let walls = realWalls.wallsRoom01;
 
 function Wall(
     x, y,

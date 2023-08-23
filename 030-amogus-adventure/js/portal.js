@@ -20,7 +20,7 @@ let realPortals = {
     ]
 };
 
-let portals = realPortals.portalsRoom00;
+let portals = realPortals.portalsRoom01;
 
 function Portal(
     x, y,
@@ -70,9 +70,3 @@ function Portal(
 };
 
 game.tick();
-
-setInterval(() => {
-    for (let i = 0; i < moveableWalls.length; i++) {
-        moveableWalls[i].move();
-    };
-}, 1000);
