@@ -10,8 +10,7 @@ window.onload = function () {
         ctx.drawImage(img, -40, -160)
     };
 
-    let randomCity = cities[Math.floor(Math.random() * cities.length)];
-    document.getElementsByClassName('city')[0].innerText = randomCity.cityName;
+
 };
 
 /*-------------------------------------------------------------------------------------------------------------*/
@@ -29,31 +28,19 @@ window.addEventListener('mousemove', (e) => {
 
 window.addEventListener('click', (e) => {
     let bounding = canvas.getBoundingClientRect();
-    drawCircles(e.clientX - bounding.left, e.clientY - bounding.top)
+    drawSquares(e.clientX - bounding.left, e.clientY - bounding.top)
 });
 
 /*-------------------------------------------------------------------------------------------------------------*/
 
-function drawCircles(x, y) {
-    ctx.beginPath();
-    ctx.fillStyle = '#98cc1f';
-    ctx.arc(x, y, 90, 0, 2 * Math.PI);
-    ctx.fill();
-
-    ctx.beginPath();
-    ctx.fillStyle = '#67ba23';
-    ctx.arc(x, y, 60, 0, 2 * Math.PI);
-    ctx.fill();
-
-    ctx.beginPath();
-    ctx.fillStyle = '#29991d';
-    ctx.arc(x, y, 30, 0, 2 * Math.PI);
-    ctx.fill();
-
-    ctx.beginPath();
-    ctx.fillStyle = '#0c730a';
-    ctx.arc(x, y, 10, 0, 2 * Math.PI);
-    ctx.fill();
+function drawSquares(x, y) {
+    for (let i = 0; i < canvas.width; i += 15) {
+        for (let j = 0; j < canvas.height; j += 15) {
+            ctx.beginPath();
+            ctx.strokeStyle = '#1b1b1b';
+            ctx.strokeRect(i, j, 15, 15);
+        };
+    };
 };
 
 /*-------------------------------------------------------------------------------------------------------------*/
@@ -63,3 +50,5 @@ let cities = [
     { cityName: 'Ottawa', x: 394, y: 265 }
 ];
 
+let randomCity = cities[Math.floor(Math.random() * cities.length)];
+document.getElementsByClassName('city')[0].innerText = randomCity.cityName;

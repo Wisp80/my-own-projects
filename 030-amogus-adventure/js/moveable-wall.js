@@ -27,7 +27,7 @@ let realMoveableWalls = {
     ]
 };
 
-let moveableWalls = realMoveableWalls.moveableWallsRoom01;
+let moveableWalls = realMoveableWalls.moveableWallsRoom00;
 
 function MoveableWall(
     x, y,

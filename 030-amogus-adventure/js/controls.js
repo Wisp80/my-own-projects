@@ -3,6 +3,7 @@ const controls = {
     isDownKeyPressed: false,
     isLeftKeyPressed: false,
     isRightKeyPressed: false,
+    isEKeyPressed: false,
 
     initializePlayersControlsListening: function () {
         window.addEventListener('keydown', (event) => {
@@ -21,6 +22,10 @@ const controls = {
 
                 case 'd':
                     this.isRightKeyPressed = true;
+                    break;
+
+                case 'e':
+                    this.isEKeyPressed = true;
                     break;
 
                 default:
@@ -44,6 +49,10 @@ const controls = {
 
                 case 'd':
                     this.isRightKeyPressed = false;
+                    break;
+
+                case 'e':
+                    this.isEKeyPressed = false;
                     break;
 
                 default:

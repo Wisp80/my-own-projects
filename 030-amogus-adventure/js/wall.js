@@ -46,7 +46,7 @@ let realWalls = {
     ]
 };
 
-let walls = realWalls.wallsRoom01;
+let walls = realWalls.wallsRoom00;
 
 function Wall(
     x, y,

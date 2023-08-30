@@ -22,8 +22,10 @@ const game = {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         for (let i = 0; i < walls.length; i++) { walls[i].draw() };
-        for (let i = 0; i < moveableWalls.length; i++) { moveableWalls[i].draw() };        
+        for (let i = 0; i < moveableWalls.length; i++) { moveableWalls[i].draw() };
         for (let i = 0; i < portals.length; i++) { portals[i].draw() };
+        for (let i = 0; i < NPCs.length; i++) { NPCs[i].draw() };
+        for (let i = 0; i < NPCs.length; i++) { NPCs[i].drawNPCsMessage() };
 
         // if (game.ticks % 10 === 0) { for (let i = 0; i < moveableWalls.length; i++) { moveableWalls[i].move() } }
         for (let i = 0; i < moveableWalls.length; i++) { moveableWalls[i].move() }

@@ -20,7 +20,7 @@ let realPortals = {
     ]
 };
 
-let portals = realPortals.portalsRoom01;
+let portals = realPortals.portalsRoom00;
 
 function Portal(
     x, y,

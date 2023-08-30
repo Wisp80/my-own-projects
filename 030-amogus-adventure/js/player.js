@@ -25,7 +25,7 @@ function Player(
     this.downwardForce = 0;
     this.accelerationX = 1;
     this.friction = 0; // [0; 1] трение, используется как множитель скорости для плавного торможения.
-    this.color = 'orange';
+    this.color = '#f9ee72';
     this.isActive = true; // Указывает активный ли для управления наш игрок.
 
     this.predictedHorizontalWayToTheRight = null;
@@ -393,6 +393,7 @@ function Player(
                 walls = realWalls['wallsRoom' + realPortals['portalsRoom' + game.currentRoom][i].destinationWalls];
                 portals = realPortals['portalsRoom' + realPortals['portalsRoom' + game.currentRoom][i].destinationPortals];
                 moveableWalls = realMoveableWalls['moveableWallsRoom' + realPortals['portalsRoom' + game.currentRoom][i].destinationMovableWalls];
+                NPCs = NPCs['NPCsRoom' + realNPCs['NPCsRoom' + game.currentRoom][i].destinationNPCs];
 
                 for (let j = 0; j < realPortals['portalsRoom' + realPortals['portalsRoom' + game.currentRoom][i].destinationPortals].length; j++) {
                     if (realPortals['portalsRoom' + realPortals['portalsRoom' + game.currentRoom][i].destinationPortals][j].id ===
