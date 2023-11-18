@@ -1,14 +1,18 @@
 let realNPCs = {
     NPCsRoom00: [
-        new NPC(860, 440, 68, 68, helper.getRandomColor(), 0, 2, './src/images/patrick.png', 'Ya look like Sponge Bob...', 140 , 12)
+        new NPC(860, 440, 68, 68, helper.getRandomColor(), 0, 2, './src/images/patrick.png', 'Ya look like Sponge Bob...', 140, 12)
     ],
 
     NPCsRoom01: [
+        // new NPC(860, 440, 68, 68, helper.getRandomColor(), 0, 2, './src/images/patrick.png', 'Ya look like Sponge Bob...', 140, 12)
+    ],
 
+    NPCsRoom02: [
+        // new NPC(860, 440, 68, 68, helper.getRandomColor(), 0, 2, './src/images/patrick.png', 'Ya look like Sponge Bob...', 140, 12)
     ]
 };
 
-let NPCs = realNPCs.NPCsRoom00;
+let NPCs = realNPCs.NPCsRoom02;
 
 function NPC(
     x, y,
@@ -43,7 +47,7 @@ function NPC(
         ctx.font = '24px serif';
         ctx.fillStyle = 'white';
         if (helper.checkIntersectionBetweenTwoNotRotatedRectangles(
-            players.playerOne.x + players.playerOne.width , this.x,
+            players.playerOne.x + players.playerOne.width, this.x,
             players.playerOne.x, this.x + this.width,
             players.playerOne.y + players.playerOne.height, this.y,
             players.playerOne.y, this.y + this.height
@@ -52,7 +56,7 @@ function NPC(
                 ctx.fillText(this.message, this.x - xMessageShift, this.y - yMessageShift);
             }
         };
-        
+
     };
 
     this.drawNPCsID = function () {

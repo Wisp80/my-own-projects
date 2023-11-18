@@ -2,7 +2,7 @@ const game = {
     tickTimeout: null,
     tickRate: 1000 / 60,
     ticks: 0,
-    currentRoom: '00',
+    currentRoom: '02',
 
     tick: function () {
         this.ticks++;
@@ -33,4 +33,3 @@ const game = {
         players.playerOne.draw();
     },
 };
-

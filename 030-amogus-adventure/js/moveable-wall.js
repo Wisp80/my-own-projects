@@ -17,17 +17,24 @@ let realMoveableWalls = {
         new MoveableWall(1080, 488, 40, 104, helper.getRandomColor(), 8, null, 384, 5),
         new MoveableWall(1300, 344, 40, 288, helper.getRandomColor(), 9, null, 572, 8),
 
-        new MoveableWall(850, 632, 450, 40, helper.getRandomColor(), 10, null, 820, 1),
+        new MoveableWall(850, 632, 450, 40, helper.getRandomColor(), 10, null, 820, 3),
 
         new MoveableWall(40, 720, 160, 40, helper.getRandomColor(), 11, 140, 620, 4),
         new MoveableWall(160, 760, 40, 100, helper.getRandomColor(), 12, 260, 660, 4),
 
         new MoveableWall(200, 720, 160, 40, helper.getRandomColor(), 13, 300, 620, 4),
         new MoveableWall(320, 760, 40, 100, helper.getRandomColor(), 14, 420, 560, 4),
-    ]
+    ],
+
+    moveableWallsRoom02: [
+        new MoveableWall(410, 308, 40, 232, helper.getRandomColor(), 0, null, 116, 3),
+
+        new MoveableWall(450, 308, 735, 40, helper.getRandomColor(), 1, 825, null, 3),
+        new MoveableWall(450, 500, 735, 40, helper.getRandomColor(), 2, 825, null, 3),
+    ],
 };
 
-let moveableWalls = realMoveableWalls.moveableWallsRoom00;
+let moveableWalls = realMoveableWalls.moveableWallsRoom02;
 
 function MoveableWall(
     x, y,
@@ -195,7 +202,7 @@ function MoveableWall(
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x, this.y, this.width, this.height);
 
-        // this.drawMoveableWallsCoordinates();
-        // this.drawMoveableWallsID();
+        this.drawMoveableWallsCoordinates();
+        this.drawMoveableWallsID();
     };
 };

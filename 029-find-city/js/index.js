@@ -9,8 +9,36 @@ window.onload = function () {
     img.onload = function () {
         ctx.drawImage(img, -40, -160)
     };
+};
 
+/*-------------------------------------------------------------------------------------------------------------*/
 
+const helper = {
+    checkIntersectionBetweenNotRotatedRectangleAndPoint: function (
+        farX, closeX,
+        farY, closeY,
+        pointX, pointY,
+    ) {
+        if (closeX <= pointX &&
+            farX >= pointX &&
+            closeY <= pointY &&
+            farY >= pointY) {
+            return true;
+        } else {
+            return false;
+        };
+    },
+
+    getRandomColor: function () {
+        let letters = '01234567109ABCDEF';
+        let color = '#';
+
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        };
+
+        return color;
+    },
 };
 
 /*-------------------------------------------------------------------------------------------------------------*/
@@ -33,12 +61,32 @@ window.addEventListener('click', (e) => {
 
 /*-------------------------------------------------------------------------------------------------------------*/
 
-function drawSquares(x, y) {
-    for (let i = 0; i < canvas.width; i += 15) {
-        for (let j = 0; j < canvas.height; j += 15) {
-            ctx.beginPath();
+function a() {
+    for (let i = 0; i < canvas.width; i += 10) {
+        for (let j = 0; j < canvas.height; j += 10) {
             ctx.strokeStyle = '#1b1b1b';
-            ctx.strokeRect(i, j, 15, 15);
+            ctx.strokeRect(i, j, 10, 10);
+        };
+    };
+};
+
+a();
+
+function drawSquares(x, y) {
+    for (let i = 0; i < canvas.width; i += 10) {
+        for (let j = 0; j < canvas.height; j += 10) {
+            if (helper.checkIntersectionBetweenNotRotatedRectangleAndPoint(
+                i + 10, i,
+                j + 10, j,
+                x, y,
+            )) {
+                ctx.fillStyle = "green";
+                ctx.strokeRect(i, j, 10, 10);
+                ctx.fillRect(i, j, 10, 10);
+            };
+
+            ctx.strokeStyle = '#1b1b1b';
+            ctx.strokeRect(i, j, 10, 10);
         };
     };
 };

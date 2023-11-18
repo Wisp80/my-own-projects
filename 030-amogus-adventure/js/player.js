@@ -11,8 +11,8 @@ function Player(
     velocityX, friction,
     color
 ) {
-    this.x = 50;
-    this.y = 50;
+    this.x = 41;
+    this.y = 41;
     this.width = 40;
     this.height = 50;
     this.speedX = 0;
@@ -393,7 +393,7 @@ function Player(
                 walls = realWalls['wallsRoom' + realPortals['portalsRoom' + game.currentRoom][i].destinationWalls];
                 portals = realPortals['portalsRoom' + realPortals['portalsRoom' + game.currentRoom][i].destinationPortals];
                 moveableWalls = realMoveableWalls['moveableWallsRoom' + realPortals['portalsRoom' + game.currentRoom][i].destinationMovableWalls];
-                NPCs = NPCs['NPCsRoom' + realNPCs['NPCsRoom' + game.currentRoom][i].destinationNPCs];
+                NPCs = realNPCs['NPCsRoom' + realPortals['portalsRoom' + game.currentRoom][i].destinationNPCs];
 
                 for (let j = 0; j < realPortals['portalsRoom' + realPortals['portalsRoom' + game.currentRoom][i].destinationPortals].length; j++) {
                     if (realPortals['portalsRoom' + realPortals['portalsRoom' + game.currentRoom][i].destinationPortals][j].id ===

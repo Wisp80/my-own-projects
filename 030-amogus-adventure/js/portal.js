@@ -4,9 +4,17 @@ let realPortals = {
             1390, 630,
             100, 130,
             helper.getRandomColor(), 0, '00',
-            '01', '01', 0, '01',
+            '01', '01', 0, '01', '01',
             './src/images/portal.png'
-        )
+        ),
+
+        // new Portal(
+        //     256, 52,
+        //     100, 130,
+        //     helper.getRandomColor(), 0, '02',
+        //     '02', '02', 0, '02', '02',
+        //     './src/images/portal.png'
+        // )
     ],
 
     portalsRoom01: [
@@ -14,19 +22,37 @@ let realPortals = {
             56, 52,
             100, 130,
             helper.getRandomColor(), 0, '01',
-            '00', '00', 0, '00',
+            '00', '00', 0, '00', '00',
+            './src/images/portal.png'
+        ),
+
+        new Portal(
+            1390, 660,
+            100, 130,
+            helper.getRandomColor(), 1, '01',
+            '02', '02', 0, '02', '02',
+            './src/images/portal.png'
+        ),
+    ],
+
+    portalsRoom02: [
+        new Portal(
+            56, 355,
+            100, 130,
+            helper.getRandomColor(), 0, '02',
+            '01', '01', 1, '01', '01',
             './src/images/portal.png'
         )
     ]
 };
 
-let portals = realPortals.portalsRoom00;
+let portals = realPortals.portalsRoom02;
 
 function Portal(
     x, y,
     width, height,
     color, id, room,
-    destinationWalls, destinationPortals, destinationPortalID, destinationMovableWalls,
+    destinationWalls, destinationPortals, destinationPortalID, destinationMovableWalls, destinationNPCs,
     src
 ) {
     this.x = x;
@@ -40,6 +66,7 @@ function Portal(
     this.destinationPortals = destinationPortals;
     this.destinationPortalID = destinationPortalID;
     this.destinationMovableWalls = destinationMovableWalls;
+    this.destinationNPCs = destinationNPCs;
     this.src = src;
 
     this.drawPortalCoordinates = function () {
