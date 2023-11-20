@@ -1,5 +1,6 @@
 const canvas = document.getElementsByClassName('canvas-one')[0];
 const ctx = canvas.getContext('2d');
+ctx.font = '42px serif';
 
 /*-------------------------------------------------------------------------------------------------------------*/
 
@@ -15,14 +16,24 @@ const helper = {
 
     randomIntFromInterval: function (min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
-    }
+    },
+
+    getUniqueCharactersFromArray: function (originalArray) {
+        let uniqueArray = [];
+
+        for (let i = 0; i < originalArray.length; i++) {
+            if (uniqueArray.includes(originalArray[i]) === false) {
+                uniqueArray.push(originalArray[i]);
+            };
+        };
+
+        return uniqueArray;
+    },
 };
 
 /*-------------------------------------------------------------------------------------------------------------*/
 
-function start() {
-    drawTerminal();
-};
+function start() { drawTerminal() };
 
 /*-------------------------------------------------------------------------------------------------------------*/
 
@@ -42,243 +53,168 @@ function drawTerminal() {
 
 /*-------------------------------------------------------------------------------------------------------------*/
 
-let hiddenWord = [
-    'П', 'А', 'Н', 'Д', 'А'
+let hiddenWord = ['Ф', 'А', 'К', 'Е', 'Л']; // Загаданное слово.
+
+let roundWords = [ // Массив данных о введеных буквах.
+    ['', '', '', '', ''],
+    ['', '', '', '', ''],
+    ['', '', '', '', ''],
+    ['', '', '', '', ''],
+    ['', '', '', '', ''],
+    ['', '', '', '', '']
 ];
 
-let attemptWords = [
-    [
-        '', '', '', '', ''
-    ],
+let uniqueLettersInHiddenWord = []; // Массив уникальных букв в загаданном слове.
+let hiddenWordAnalyze = {}; // Данные о том, сколько каждой уникальной буквы находится в загаданном слове.
 
-    [
-        '', '', '', '', ''
-    ],
+function analyzeHiddenWord() { // Функция по сбору данных в два массива выше.
+    uniqueLettersInHiddenWord = helper.getUniqueCharactersFromArray(hiddenWord);
 
-    [
-        '', '', '', '', ''
-    ],
+    for (let i = 0; i < uniqueLettersInHiddenWord.length; i++) {
+        hiddenWordAnalyze[uniqueLettersInHiddenWord[i]] = 0;
 
-    [
-        '', '', '', '', ''
-    ],
+        for (let j = 0; j < hiddenWord.length; j++) {
+            if (uniqueLettersInHiddenWord[i] === hiddenWord[j]) {
+                hiddenWordAnalyze[uniqueLettersInHiddenWord[i]]++;
+            };
+        };
+    };
 
-    [
-        '', '', '', '', ''
-    ],
+    console.log('Уникальные буквы в загаданном слове:');
+    console.log(uniqueLettersInHiddenWord);
+    console.log('Сколько каждой уникальной буквы находится в загаданном слове:');
+    console.log(hiddenWordAnalyze);
+    console.log('------------------------------------------------------------------------------------------');
+};
 
-    [
-        '', '', '', '', ''
-    ]
-];
+analyzeHiddenWord(); // Собираем данные для двух массивов выше.
 
 /*-------------------------------------------------------------------------------------------------------------*/
 
-let letterCount = 0;
-let attemptCount = 0;
-let enterCount = 0;
+let lettersCountInCurrentAttempt = 0; // Количество букв введенных в текущую строку на данный момент.
+let attemptCount = 0; // Номер текущей строки.
+let win = false;
 
 function fillLetter(letter) {
-    if (letterCount > 4) {
-        attemptCount++;
+    if (lettersCountInCurrentAttempt < hiddenWord.length && !win) {
+        roundWords[attemptCount][lettersCountInCurrentAttempt] = letter;
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = 'black';
+        ctx.fillText(letter, 55 + 90 * lettersCountInCurrentAttempt, 76 + 90 * attemptCount);
+        lettersCountInCurrentAttempt++;
+        console.log('Все введенные буквы:');
+        console.log(roundWords);
     };
-
-    for (let i = 0; i < attemptWords.length; i++) {
-        for (let j = 0; j < attemptWords[i].length; j++) {
-            attemptWords[attemptCount][letterCount] = letter;
-        };
-    };
-
-    ctx.font = "42px serif";
-
-    if (attemptCount === 0) {
-        switch (letterCount) {
-            case 0:
-                ctx.fillText(letter, 55, 76);
-                break;
-
-            case 1:
-                ctx.fillText(letter, 145, 76);
-                break;
-
-            case 2:
-                ctx.fillText(letter, 235, 76);
-                break;
-
-            case 3:
-                ctx.fillText(letter, 325, 76);
-                break;
-
-            case 4:
-                ctx.fillText(letter, 415, 76);
-                break;
-
-            default:
-                break;
-        };
-    };
-
-    if (attemptCount === 1 && enterCount === 1) {
-        switch (letterCount) {
-            case 0:
-                ctx.fillText(letter, 55, 168);
-                break;
-
-            case 1:
-                ctx.fillText(letter, 145, 168);
-                break;
-
-            case 2:
-                ctx.fillText(letter, 235, 168);
-                break;
-
-            case 3:
-                ctx.fillText(letter, 325, 168);
-                break;
-
-            case 4:
-                ctx.fillText(letter, 415, 168);
-                break;
-
-            default:
-                break;
-        };
-    };
-
-    if (attemptCount === 2 && enterCount === 2) {
-        switch (letterCount) {
-            case 0:
-                ctx.fillText(letter, 55, 259);
-                break;
-
-            case 1:
-                ctx.fillText(letter, 145, 259);
-                break;
-
-            case 2:
-                ctx.fillText(letter, 235, 259);
-                break;
-
-            case 3:
-                ctx.fillText(letter, 325, 259);
-                break;
-
-            case 4:
-                ctx.fillText(letter, 415, 259);
-                break;
-
-            default:
-                break;
-        };
-    };
-
-    if (attemptCount === 3 && enterCount === 3) {
-        switch (letterCount) {
-            case 0:
-                ctx.fillText(letter, 55, 350);
-                break;
-
-            case 1:
-                ctx.fillText(letter, 145, 350);
-                break;
-
-            case 2:
-                ctx.fillText(letter, 235, 350);
-                break;
-
-            case 3:
-                ctx.fillText(letter, 325, 350);
-                break;
-
-            case 4:
-                ctx.fillText(letter, 415, 350);
-                break;
-
-            default:
-                break;
-        };
-    };
-
-    if (attemptCount === 4 && enterCount === 4) {
-        switch (letterCount) {
-            case 0:
-                ctx.fillText(letter, 55, 438);
-                break;
-
-            case 1:
-                ctx.fillText(letter, 145, 438);
-                break;
-
-            case 2:
-                ctx.fillText(letter, 235, 438);
-                break;
-
-            case 3:
-                ctx.fillText(letter, 325, 438);
-                break;
-
-            case 4:
-                ctx.fillText(letter, 415, 438);
-                break;
-
-            default:
-                break;
-        };
-    };
-
-    if (attemptCount === 5 && enterCount === 5) {
-        switch (letterCount) {
-            case 0:
-                ctx.fillText(letter, 55, 525);
-                break;
-
-            case 1:
-                ctx.fillText(letter, 145, 525);
-                break;
-
-            case 2:
-                ctx.fillText(letter, 235, 525);
-                break;
-
-            case 3:
-                ctx.fillText(letter, 325, 525);
-                break;
-
-            case 4:
-                ctx.fillText(letter, 415, 525);
-                break;
-
-            default:
-                break;
-        };
-    };
-
-    if (letterCount !== 5) {
-        letterCount++;
-    };
-
-    console.log(letterCount);
-    console.log(attemptCount);
 };
 
 /*-------------------------------------------------------------------------------------------------------------*/
 
-function checkTheWord() {
-    if (letterCount === 5) {
-        enterCount++;
+let colorsInCurrentWord = ['black', 'black', 'black', 'black', 'black']; // Данные о том, какие буквы уже закрашены в текущем слове.
+let uniqueLettersInCurrentWord = []; // Массив уникальных букв в текущем слове.
+let currentWordAnalyze = {}; // Данные о том, сколько каждой уникальной буквы находится в текущем слове.
 
+function showInfo() {
+    console.log('Все введенные буквы:');
+    console.log(roundWords);
+    console.log('Уникальные буквы в загаданном слове:');
+    console.log(uniqueLettersInHiddenWord);
+    console.log('Сколько каждой уникальной буквы находится в загаданном слове:');
+    console.log(hiddenWordAnalyze);
+    console.log('Уникальные буквы в текущем слове:');
+    console.log(uniqueLettersInCurrentWord);
+    console.log('Сколько каждой уникальной буквы закрашено зеленым или желтым цветом в текущем слове:');
+    console.log(currentWordAnalyze);
+    console.log('Какого цвета буквы в текущем слове');
+    console.log(colorsInCurrentWord);
+    console.log('------------------------------------------------------------------------------------------');
+};
+
+function analyzeCurrentnWord() { // Функция по сбору данных в два массива выше.
+    uniqueLettersInCurrentWord = [];
+    currentWordAnalyze = {};
+    colorsInCurrentWord = ['black', 'black', 'black', 'black', 'black'];
+    uniqueLettersInCurrentWord = helper.getUniqueCharactersFromArray(roundWords[attemptCount]);
+    for (let j = 0; j < uniqueLettersInCurrentWord.length; j++) { currentWordAnalyze[uniqueLettersInCurrentWord[j]] = 0 };
+};
+
+function changeLetterColor(color, letter, letterPosition, line) { // Функция для закрашивания какой-то буквы в текущем слове.
+    ctx.strokeStyle = color;
+    ctx.fillStyle = color;
+    ctx.fillText(letter, 55 + 90 * letterPosition, 76 + 90 * line);
+    ctx.strokeText(letter, 55 + 90 * letterPosition, 76 + 90 * line);
+};
+
+function checkTheWord() {
+    if (lettersCountInCurrentAttempt === hiddenWord.length && !win) {
+        analyzeCurrentnWord();
+        console.log('------------------------------------------------------------------------------------------');
+        console.log('ATTEMP #' + attemptCount);
+        showInfo();
+
+        /*Если какая-то буква в текущем слове совпадает с какой-то буквой в загаданном слове по значению и позиции, то 
+        делаем ее зеленой, указывая, что закрасили ее на 1 раз больше.*/
         for (let i = 0; i < hiddenWord.length; i++) {
-            for (let j = 0; j < attemptWords[enterCount]; j++) {
-                if (hiddenWord[i] = attemptWords[enterCount][j]) {
-                    console.log('win');
+            if (hiddenWord[i] === roundWords[attemptCount][i]) {
+                changeLetterColor('green', roundWords[attemptCount][i], i, attemptCount);
+                colorsInCurrentWord[i] = 'green';
+                currentWordAnalyze[roundWords[attemptCount][i]]++;
+                console.log('G R E E N');
+                showInfo();
+            };
+        };
+
+        for (let i = 0; i < roundWords[attemptCount].length; i++) {
+            for (let j = 0; j < hiddenWord.length; j++) {
+                if (/*Если*/
+                    /*какая-то буква в текущем слове совпадает с какой-то буквой в загаданном слове по значению и но не по позиции,*/
+                    roundWords[attemptCount][i] === hiddenWord[j] && i !== j &&
+                    /*позиция этой какой-то буквы в текущем или загаданном слове не зеленая,*/
+                    colorsInCurrentWord[i] !== 'green' && colorsInCurrentWord[j] !== 'green' &&
+                    /*эта какая-то буква в текущем слове еще не закрашена желтым большее количество раз, чем есть копий этой буквы в загаданном слове,*/
+                    currentWordAnalyze[roundWords[attemptCount][i]] < hiddenWordAnalyze[roundWords[attemptCount][i]]
+                ) {
+                    /*то закрашиваем эту букву в текущем слове, указывая, что закрасили ее на 1 раз больше.*/
+                    changeLetterColor('yellow', roundWords[attemptCount][i], i, attemptCount);
+                    colorsInCurrentWord[i] = 'yellow';
+                    currentWordAnalyze[roundWords[attemptCount][i]]++;
+                    console.log('Y E L L O W');
+                    showInfo();
+                    break;
                 };
             };
         };
-    } else {
-        return;
+
+        for (let i = 0; i < hiddenWord.length; i++) {
+            if (hiddenWord[i] !== roundWords[attemptCount][i]) {
+                if (attemptCount === 5) {
+                    console.log('GAME OVER');
+                    return;
+                } else {
+                    attemptCount++;
+                    lettersCountInCurrentAttempt = 0;
+                    console.log('KEEP TRYING');
+                    return;
+                };
+            };
+        };
+
+        win = true;
+        console.log('YOU WON');
     };
 };
 
 /*-------------------------------------------------------------------------------------------------------------*/
 
 start();
+
+/*
+1) Выровнять CSS
+2) Реализовать кнопку удаления буквы
+3) Выводить в случае проигрыша загаданное слово
+4) Увеличить словарь слов и выбирать случайно слово из словаря в качестве загаданного
+5) Добавить опцию загадывания слова самому (скорее всего нужно будет меню какое-то)
+6) Добавить возможность перезапуска игры
+7) Добавить экраны проигрыша и выигрыша
+8) Перевести программу на ООП
+9) Зарисовывать клавиатуру
+*/
