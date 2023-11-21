@@ -1,12 +1,30 @@
-#canvas {
-    border: 1px solid black;
-    margin-left: 700px;
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgb(243, 217, 187);
+}
+
+.global-container {
+    margin-top: 1%;
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.canvas-one {
+    border: 2px solid black;
+    margin-bottom: 20px;
 }
 
 .keyboard {
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* border: 1px solid black; */
 }
 
 .keyboard-button {
@@ -14,16 +32,18 @@
     height: 40px;
     font-size: 24px;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(245, 209, 167);
 }
 
-.keyboard-button-enter {
+.keyboard-button-check {
     width: 80px;
     height: 40px;
     font-size: 25px;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(250, 196, 135);
 }
 
 .keyboard-row {
     display: flex;
-    flex-direction: ro;
+    flex-direction: row;
 }

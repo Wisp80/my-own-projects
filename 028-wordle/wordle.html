@@ -10,50 +10,50 @@
 
 <body>
     <div class='global-container'>
-        <canvas id='canvas' class='canvas-one' width='500' height='600'></canvas>
+        <canvas class='canvas-one' width='500' height='600'></canvas>
 
         <div class='keyboard'>
             <div class='keyboard-first-row keyboard-row'>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>Й</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>Ц</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>У</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>К</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>Е</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>Н</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>Г</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>Ш</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>Щ</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>З</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>Х</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>Ъ</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>Й</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>Ц</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>У</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>К</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>Е</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>Н</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>Г</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>Ш</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>Щ</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>З</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>Х</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>Ъ</button>
             </div>
 
             <div class='keyboard-second-row keyboard-row'>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>Ф</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>Ы</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>В</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>А</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>П</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>Р</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>О</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>Л</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>Д</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>Ж</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>Э</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>Ф</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>Ы</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>В</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>А</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>П</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>Р</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>О</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>Л</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>Д</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>Ж</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>Э</button>
                 <button class='keyboard-button' onclick=''>←</button>
             </div>
 
             <div class='keyboard-third-row keyboard-row'>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>Я</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>Ч</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>С</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>М</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>И</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>Т</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>Ь</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>Б</button>
-                <button class='keyboard-button' onclick='fillLetter(this.innerText);'>Ю</button>
-                <button class='keyboard-button-enter' onclick='checkTheWord();'>Check</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>Я</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>Ч</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>С</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>М</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>И</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>Т</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>Ь</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>Б</button>
+                <button class='keyboard-button' onclick='currentWord.fillLetter(this.innerText);'>Ю</button>
+                <button class='keyboard-button-check' onclick='game.checkTheWord();'>Check</button>
             </div>
         </div>
     </div>
