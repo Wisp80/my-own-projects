@@ -24,6 +24,10 @@ const helper = {
     showInfo: function () {
         console.log('Все введенные буквы:');
         console.log(currentWord.roundWords);
+        console.log('Количество букв в строке:');
+        console.log(currentWord.lettersCountInCurrentAttempt);
+        console.log('Предыдущая позиция:');
+        console.log(currentWord.previousPositionTyped);
         console.log('Уникальные буквы в загаданном слове:');
         console.log(hiddenWord.uniqueLettersInHiddenWord);
         console.log('Сколько каждой уникальной буквы находится в загаданном слове:');
@@ -32,7 +36,7 @@ const helper = {
         console.log(currentWord.uniqueLettersInCurrentWord);
         console.log('Сколько каждой уникальной буквы закрашено зеленым или желтым цветом в текущем слове:');
         console.log(currentWord.currentWordAnalyze);
-        console.log('Какого цвета буквы в текущем слове');
+        console.log('Какого цвета буквы в текущем слове:');
         console.log(currentWord.colorsInCurrentWord);
         console.log('------------------------------------------------------------------------------------------');
     },
@@ -94,6 +98,7 @@ const game = {
                     } else {
                         currentWord.attemptCount++;
                         currentWord.lettersCountInCurrentAttempt = 0;
+                        currentWord.previousPositionTyped = 0;
                         console.log('KEEP TRYING');
                         return;
                     };
@@ -108,6 +113,9 @@ const game = {
 
 const terminal = {
     drawTerminal: function () {
+        ctx.fillStyle = 'pink';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
         ctx.strokeStyle = 'black';
         ctx.fillStyle = 'black';
         ctx.lineWidth = 2;
@@ -136,7 +144,16 @@ const terminal = {
     },
 
     eraseLetter: function () {
-
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(70 + 90 * currentWord.previousPositionTyped, 65 + 90 * currentWord.attemptCount, 40, 0, Math.PI * 2, true);
+        ctx.fillStyle = 'pink';
+        ctx.clip();
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.strokeStyle = 'black';
+        ctx.stroke();
+        ctx.closePath();
+        ctx.restore();
     },
 };
 
@@ -180,6 +197,7 @@ const currentWord = {
     colorsInCurrentWord: ['black', 'black', 'black', 'black', 'black'], // Данные о том, какие буквы уже закрашены в текущем слове.
     uniqueLettersInCurrentWord: [], // Массив уникальных букв в текущем слове.
     currentWordAnalyze: {}, // Данные о том, сколько каждой уникальной буквы находится в текущем слове.
+    previousPositionTyped: 0,
 
     analyzeCurrentnWord: function () { // Функция по сбору данных в два массива и объект выше.
         this.uniqueLettersInCurrentWord = [];
@@ -193,26 +211,34 @@ const currentWord = {
         if (this.lettersCountInCurrentAttempt < hiddenWord.word.length && !game.win) {
             this.roundWords[this.attemptCount][this.lettersCountInCurrentAttempt] = letter;
             terminal.drawLetter(letter);
+            this.previousPositionTyped = this.lettersCountInCurrentAttempt;
             this.lettersCountInCurrentAttempt++;
             console.log('Все введенные буквы:');
             console.log(this.roundWords);
+            console.log('------------------------------------------------------------------------------------------');
         };
     },
 
     removeLetter: function () {
+        console.log('ДО УДАЛЕНИЯ:');
+        helper.showInfo();
+        this.roundWords[this.attemptCount][this.previousPositionTyped] = '';
         terminal.eraseLetter();
+        if (this.previousPositionTyped !== 0) { this.previousPositionTyped-- };
+        if (this.lettersCountInCurrentAttempt !== 0) { this.lettersCountInCurrentAttempt-- };
+        console.log('ПОСЛЕ УДАЛЕНИЯ:');
+        helper.showInfo();
     },
 };
 
 game.start();
 
 /*
-1) Реализовать кнопку удаления буквы
-2) Выводить в случае проигрыша загаданное слово
-3) Увеличить словарь слов и выбирать случайно слово из словаря в качестве загаданного
-4) Добавить опцию загадывания слова самому (скорее всего нужно будет меню какое-то)
-5) Добавить возможность перезапуска игры
-6) Добавить экраны проигрыша и выигрыша
-7) Зарисовывать клавиатуру
-8) Возможность печатать с клавиатуры
+1) Выводить в случае проигрыша загаданное слово
+2) Увеличить словарь слов и выбирать случайно слово из словаря в качестве загаданного
+3) Добавить опцию загадывания слова самому (скорее всего нужно будет меню какое-то)
+4) Добавить возможность перезапуска игры
+5) Добавить экраны проигрыша и выигрыша
+6) Зарисовывать клавиатуру
+7) Возможность печатать с клавиатуры
 */
