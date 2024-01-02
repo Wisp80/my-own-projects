@@ -1,25 +1,63 @@
 const canvas = document.getElementsByClassName('canvas-one')[0];
 const ctx = canvas.getContext('2d');
 
-// canvas.width = 1600;
-// canvas.height = 880;
+/*--------------------------------------------------------------------------------*/
 
-let radius = 50;
-let newLineWidth = 1;
+let mousePose = { currentMouseX: undefined, currentMouseY: undefined };
+let isMouseDown = false;
 
-function draw() {
+window.addEventListener('mousemove', (e) => {
+    let bounding = canvas.getBoundingClientRect();
+    mousePose.currentMouseX = e.clientX - bounding.left;
+    mousePose.currentMouseY = e.clientY - bounding.top;
+});
+
+window.addEventListener("click", () => {
+    draw(mousePose.currentMouseX, mousePose.currentMouseY);
+    setTimeout(() => {
+        draw2();
+    }, 700);
+});
+
+// window.addEventListener("mouseup", () => {
+//     isMouseDown = false;
+// });
+
+/*--------------------------------------------------------------------------------*/
+
+let outerRadius = 20;
+let outerNewLineWidth = 2;
+
+let innerRadius = 10;
+let innerNewLineWidth = 1;
+
+function draw(x, y) {
     setTimeout(() => {
         draw();
     }, 1);
 
-    radius++;
-    newLineWidth++;
+    outerRadius++;
+    outerNewLineWidth++;
+
+    innerRadius++;
+    innerNewLineWidth++;
 
     ctx.beginPath();
-    ctx.arc(canvas.width / 2, canvas.height / 2, radius, 0, 2 * Math.PI, false);
-    ctx.lineWidth = newLineWidth;
-    ctx.strokeStyle = '#003300';
+    ctx.arc(x, y, outerRadius, 0, 2 * Math.PI, false);
+    ctx.lineWidth = outerNewLineWidth;
+    ctx.strokeStyle = '#5633A0';
     ctx.stroke();
+    ctx.closePath();
 };
 
-draw();
+function draw2(x, y) {
+    setTimeout(() => {
+        draw();
+    }, 1);
+
+    ctx.beginPath();
+    ctx.arc(x, y, innerRadius, 0, 2 * Math.PI, false);
+    ctx.lineWidth = innerNewLineWidth;
+    ctx.strokeStyle = '#FFFFFF';
+    ctx.stroke();
+}
