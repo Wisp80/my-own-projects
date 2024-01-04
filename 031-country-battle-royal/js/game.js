@@ -1,7 +1,18 @@
 const game = {
-    firstCountrySquares: [],
     randomSqureXBasedOnRandomPoint: 0,
     randomSqureYBasedOnRandomPoint: 0,
+
+    randomSqureXBasedOnRandomPoints: [
+        helper.randomIntFromInterval(1, canvas.width),
+        helper.randomIntFromInterval(1, canvas.width),
+        helper.randomIntFromInterval(1, canvas.width)
+    ],
+
+    randomSqureYBasedOnRandomPoints: [
+        helper.randomIntFromInterval(1, canvas.height),
+        helper.randomIntFromInterval(1, canvas.height),
+        helper.randomIntFromInterval(1, canvas.height)
+    ],
 
     worldBioms: ['Desert', 'Forest', 'Mountains', 'Tundra'],
     worldEvent: ['War', 'Alliance', 'Civil war', 'Unification'],
@@ -14,27 +25,26 @@ const game = {
             for (let j = 0; j < canvas.height; j += h) {
                 ctx.strokeStyle = '#1b1b1b';
                 ctx.strokeRect(i, j, w, h);
-                this.randomSqureXBasedOnRandomPoint = randomPointX;
-                this.randomSqureYBasedOnRandomPoint = randomPointY;
-                // ctx.strokeRect(randomPointX, randomPointY, w, h);
 
-                if (helper.checkIntersectionBetweenNotRotatedRectangleAndPoint(i + w, i, j + h, j, randomPointX, randomPointY)) {
-                    let randomTopLeftSquarePointX = i;
-                    let randomTopLeftSquarePointY = j;
-                    console.log(randomTopLeftSquarePointX);
-                    console.log(randomTopLeftSquarePointY);
-                    ctx.fillStyle = "green";
-                    ctx.fillRect(randomTopLeftSquarePointX, randomTopLeftSquarePointY, 22, 22);
-                    ctx.fillRect(randomTopLeftSquarePointX, randomTopLeftSquarePointY, 22, 22);
+                for (let k = 0; k < this.randomSqureXBasedOnRandomPoints.length; k++) {
+                    this.randomSqureXBasedOnRandomPoints[k] = randomPointX;
+                    this.randomSqureYBasedOnRandomPoints[k] = randomPointY;
+
+                    if (helper.checkIntersectionBetweenNotRotatedRectangleAndPoint(i + w, i, j + h, j, randomPointX, randomPointY)) {
+                        let randomTopLeftSquarePointX = i;
+                        let randomTopLeftSquarePointY = j;
+                        // console.log(randomTopLeftSquarePointX);
+                        // console.log(randomTopLeftSquarePointY);
+                        ctx.fillStyle = "blue";
+                        ctx.fillRect(randomTopLeftSquarePointX, randomTopLeftSquarePointY, 40, 40);
+                    };
                 };
             };
         };
-
-        this.firstCountrySquares = [this.randomSqureXBasedOnRandomPoint, this.randomSqureYBasedOnRandomPoint];
     },
 };
 
-game.drawGrid(22, 22);
+game.drawGrid(40, 40);
 
 //-------------------------------------------------------------------------------------------------------------------//
 
