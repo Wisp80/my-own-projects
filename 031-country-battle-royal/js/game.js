@@ -1,6 +1,7 @@
 const game = {
     randomSqureXBasedOnRandomPoint: 0,
     randomSqureYBasedOnRandomPoint: 0,
+    coordinates: [0, 0, 0, 0],
 
     randomSqureXBasedOnRandomPoints: [
         helper.randomIntFromInterval(1, canvas.width),
@@ -18,29 +19,81 @@ const game = {
     worldEvent: ['War', 'Alliance', 'Civil war', 'Unification'],
 
     drawGrid: function (w, h) {
-        let randomPointX = helper.randomIntFromInterval(1, canvas.width);
-        let randomPointY = helper.randomIntFromInterval(1, canvas.height);
+        let randomPointX = this.randomSqureXBasedOnRandomPoints[0];
+        let randomPointY = this.randomSqureYBasedOnRandomPoints[0];
+
+        let randomPointXTwo = this.randomSqureXBasedOnRandomPoints[1];
+        let randomPointYTwo = this.randomSqureYBasedOnRandomPoints[1];
+
 
         for (let i = 0; i < canvas.width; i += w) {
             for (let j = 0; j < canvas.height; j += h) {
                 ctx.strokeStyle = '#1b1b1b';
                 ctx.strokeRect(i, j, w, h);
 
-                for (let k = 0; k < this.randomSqureXBasedOnRandomPoints.length; k++) {
-                    this.randomSqureXBasedOnRandomPoints[k] = randomPointX;
-                    this.randomSqureYBasedOnRandomPoints[k] = randomPointY;
 
-                    if (helper.checkIntersectionBetweenNotRotatedRectangleAndPoint(i + w, i, j + h, j, randomPointX, randomPointY)) {
-                        let randomTopLeftSquarePointX = i;
-                        let randomTopLeftSquarePointY = j;
-                        // console.log(randomTopLeftSquarePointX);
-                        // console.log(randomTopLeftSquarePointY);
-                        ctx.fillStyle = "blue";
-                        ctx.fillRect(randomTopLeftSquarePointX, randomTopLeftSquarePointY, 40, 40);
-                    };
+
+                if (helper.checkIntersectionBetweenNotRotatedRectangleAndPoint(i + w, i, j + h, j, randomPointX, randomPointY)) {
+                    let randomTopLeftSquarePointX = i;
+                    let randomTopLeftSquarePointY = j;
+                    this.coordinates[0] = i;
+                    this.coordinates[1] = j;
+                    // console.log(randomTopLeftSquarePointX);
+                    // console.log(randomTopLeftSquarePointY);
+                    ctx.fillStyle = "blue";
+                    ctx.fillRect(randomTopLeftSquarePointX, randomTopLeftSquarePointY, 40, 40);
                 };
+
+                if (helper.checkIntersectionBetweenNotRotatedRectangleAndPoint(i + w, i, j + h, j, randomPointXTwo, randomPointYTwo)) {
+                    let randomTopLeftSquarePointX = i;
+                    let randomTopLeftSquarePointY = j;
+                    this.coordinates[2] = i;
+                    this.coordinates[3] = j;
+
+                    // console.log(randomTopLeftSquarePointX);
+                    // console.log(randomTopLeftSquarePointY);
+
+                    ctx.fillRect(randomTopLeftSquarePointX, randomTopLeftSquarePointY, 40, 40);
+                    console.log(this.coordinates);
+                };
+
+
             };
         };
+
+        ctx.fillStyle = "blue";
+
+        ctx.beginPath();
+        ctx.moveTo(this.coordinates[0], this.coordinates[1]);
+        ctx.lineTo(this.coordinates[2], this.coordinates[3]);
+        ctx.lineTo(this.coordinates[2] + w, this.coordinates[3]);
+        ctx.lineTo(this.coordinates[0] + w, this.coordinates[1]);
+        ctx.lineTo(this.coordinates[0], this.coordinates[1]);
+        ctx.stroke();
+
+        ctx.moveTo(this.coordinates[0], this.coordinates[1]);
+        ctx.lineTo(this.coordinates[0], this.coordinates[1] + h);
+        ctx.lineTo(this.coordinates[2], this.coordinates[3] + h);
+        ctx.lineTo(this.coordinates[2], this.coordinates[3]);
+        ctx.lineTo(this.coordinates[0], this.coordinates[1]);
+        ctx.stroke();
+
+        ctx.moveTo(this.coordinates[0] + w, this.coordinates[1] + h);
+        ctx.lineTo(this.coordinates[0], this.coordinates[1] + h);
+        ctx.lineTo(this.coordinates[2], this.coordinates[3] + h);
+        ctx.lineTo(this.coordinates[2] + w, this.coordinates[3] + h);
+        ctx.lineTo(this.coordinates[0] + w, this.coordinates[1] + h);
+        ctx.stroke();
+
+        ctx.moveTo(this.coordinates[0] + w, this.coordinates[1]);
+        ctx.lineTo(this.coordinates[0] + w, this.coordinates[1] + h);
+        ctx.lineTo(this.coordinates[2] + w, this.coordinates[3] + h);
+        ctx.lineTo(this.coordinates[2] + w, this.coordinates[3]);
+        ctx.lineTo(this.coordinates[0] + w, this.coordinates[1]);
+        ctx.stroke();
+
+        ctx.fill();
+        ctx.closePath();
     },
 };
 
