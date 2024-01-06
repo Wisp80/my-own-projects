@@ -52,7 +52,7 @@ const game = {
 
                     // console.log(randomTopLeftSquarePointX);
                     // console.log(randomTopLeftSquarePointY);
-
+                    ctx.fillStyle = "blue";
                     ctx.fillRect(randomTopLeftSquarePointX, randomTopLeftSquarePointY, 40, 40);
                     console.log(this.coordinates);
                 };
@@ -64,32 +64,48 @@ const game = {
         ctx.fillStyle = "blue";
 
         ctx.beginPath();
+        // ctx.moveTo(this.coordinates[0], this.coordinates[1]);
+        // ctx.lineTo(this.coordinates[2], this.coordinates[3]);
+        // ctx.lineTo(this.coordinates[2] + w, this.coordinates[3]);
+        // ctx.lineTo(this.coordinates[0] + w, this.coordinates[1]);
+        // ctx.lineTo(this.coordinates[0], this.coordinates[1]);
+        // ctx.stroke();
+
+        // ctx.moveTo(this.coordinates[0], this.coordinates[1]);
+        // ctx.lineTo(this.coordinates[0], this.coordinates[1] + h);
+        // ctx.lineTo(this.coordinates[2], this.coordinates[3] + h);
+        // ctx.lineTo(this.coordinates[2], this.coordinates[3]);
+        // ctx.lineTo(this.coordinates[0], this.coordinates[1]);
+        // ctx.stroke();
+
+        // ctx.moveTo(this.coordinates[0] + w, this.coordinates[1] + h);
+        // ctx.lineTo(this.coordinates[0], this.coordinates[1] + h);
+        // ctx.lineTo(this.coordinates[2], this.coordinates[3] + h);
+        // ctx.lineTo(this.coordinates[2] + w, this.coordinates[3] + h);
+        // ctx.lineTo(this.coordinates[0] + w, this.coordinates[1] + h);
+        // ctx.stroke();
+
+        // ctx.moveTo(this.coordinates[0] + w, this.coordinates[1]);
+        // ctx.lineTo(this.coordinates[0] + w, this.coordinates[1] + h);
+        // ctx.lineTo(this.coordinates[2] + w, this.coordinates[3] + h);
+        // ctx.lineTo(this.coordinates[2] + w, this.coordinates[3]);
+        // ctx.lineTo(this.coordinates[0] + w, this.coordinates[1]);
+        // ctx.stroke();
+
         ctx.moveTo(this.coordinates[0], this.coordinates[1]);
-        ctx.lineTo(this.coordinates[2], this.coordinates[3]);
-        ctx.lineTo(this.coordinates[2] + w, this.coordinates[3]);
-        ctx.lineTo(this.coordinates[0] + w, this.coordinates[1]);
+        ctx.lineTo(this.coordinates[0], this.coordinates[1] + h);
+        ctx.lineTo(this.coordinates[2], this.coordinates[3] + h);
+        ctx.lineTo(this.coordinates[2] + w, this.coordinates[3] + h);
+        ctx.lineTo(this.coordinates[0], this.coordinates[1] + h);
         ctx.lineTo(this.coordinates[0], this.coordinates[1]);
         ctx.stroke();
 
         ctx.moveTo(this.coordinates[0], this.coordinates[1]);
         ctx.lineTo(this.coordinates[0], this.coordinates[1] + h);
         ctx.lineTo(this.coordinates[2], this.coordinates[3] + h);
-        ctx.lineTo(this.coordinates[2], this.coordinates[3]);
-        ctx.lineTo(this.coordinates[0], this.coordinates[1]);
-        ctx.stroke();
-
-        ctx.moveTo(this.coordinates[0] + w, this.coordinates[1] + h);
+        ctx.lineTo(this.coordinates[2] + w, this.coordinates[3] + h);
         ctx.lineTo(this.coordinates[0], this.coordinates[1] + h);
-        ctx.lineTo(this.coordinates[2], this.coordinates[3] + h);
-        ctx.lineTo(this.coordinates[2] + w, this.coordinates[3] + h);
-        ctx.lineTo(this.coordinates[0] + w, this.coordinates[1] + h);
-        ctx.stroke();
-
-        ctx.moveTo(this.coordinates[0] + w, this.coordinates[1]);
-        ctx.lineTo(this.coordinates[0] + w, this.coordinates[1] + h);
-        ctx.lineTo(this.coordinates[2] + w, this.coordinates[3] + h);
-        ctx.lineTo(this.coordinates[2] + w, this.coordinates[3]);
-        ctx.lineTo(this.coordinates[0] + w, this.coordinates[1]);
+        ctx.lineTo(this.coordinates[0], this.coordinates[1]);
         ctx.stroke();
 
         ctx.fill();
