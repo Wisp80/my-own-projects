@@ -14,9 +14,8 @@ window.addEventListener('mousemove', (e) => {
 
 window.addEventListener("click", () => {
     draw(mousePose.currentMouseX, mousePose.currentMouseY);
-    setTimeout(() => {
-        draw2();
-    }, 700);
+    draw2(mousePose.currentMouseX, mousePose.currentMouseY);
+
 });
 
 // window.addEventListener("mouseup", () => {
@@ -29,18 +28,15 @@ let outerRadius = 20;
 let outerNewLineWidth = 2;
 
 let innerRadius = 10;
-let innerNewLineWidth = 1;
+let innerNewLineWidth = 2;
 
 function draw(x, y) {
     setTimeout(() => {
-        draw();
+        draw(x, y);
     }, 1);
 
     outerRadius++;
     outerNewLineWidth++;
-
-    innerRadius++;
-    innerNewLineWidth++;
 
     ctx.beginPath();
     ctx.arc(x, y, outerRadius, 0, 2 * Math.PI, false);
@@ -52,12 +48,15 @@ function draw(x, y) {
 
 function draw2(x, y) {
     setTimeout(() => {
-        draw();
+        draw(x, y);
     }, 1);
+
+    innerRadius++;
+    innerNewLineWidth++;
 
     ctx.beginPath();
     ctx.arc(x, y, innerRadius, 0, 2 * Math.PI, false);
     ctx.lineWidth = innerNewLineWidth;
     ctx.strokeStyle = '#FFFFFF';
     ctx.stroke();
-}
+};
