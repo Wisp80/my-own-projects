@@ -27,8 +27,10 @@ window.addEventListener("click", () => {
 let outerRadius = 20;
 let outerNewLineWidth = 2;
 
-let innerRadius = 10;
-let innerNewLineWidth = 2;
+let innerRadius = 14;
+let innerNewLineWidth = 1;
+
+let counter = 1;
 
 function draw(x, y) {
     setTimeout(() => {
@@ -44,11 +46,13 @@ function draw(x, y) {
     ctx.strokeStyle = '#5633A0';
     ctx.stroke();
     ctx.closePath();
+
+    stopIncreasing();
 };
 
 function draw2(x, y) {
     setTimeout(() => {
-        draw(x, y);
+        draw2(x, y);
     }, 1);
 
     innerRadius++;
@@ -59,4 +63,21 @@ function draw2(x, y) {
     ctx.lineWidth = innerNewLineWidth;
     ctx.strokeStyle = '#FFFFFF';
     ctx.stroke();
+    ctx.closePath();
+
+    stopIncreasing2();
+};
+
+function stopIncreasing() {
+    setTimeout(() => {
+        outerRadius = 0;
+        outerNewLineWidth = 0;
+    }, 2000);
+};
+
+function stopIncreasing2() {
+    setTimeout(() => {
+        innerRadius = 0;
+        innerNewLineWidth = 0;
+    }, 2000);
 };
