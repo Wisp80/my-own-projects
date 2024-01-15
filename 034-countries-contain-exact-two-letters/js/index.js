@@ -213,28 +213,20 @@ function drawGrid(w, h) {
     drawData(w, h);
 };
 
-// function drawData(w, h) {
-//     let arrayOfNeededXCoordinates = [];
-//     let arrayOfNeededYCoordinates = [];
-//     let Xcounter = 25;
-//     let Ycounter = 25;
+function drawData(w, h) {
+    for (let i = 0; i < canvas.width; i += w) {
+        for (let j = 0; j < canvas.height; j += h) {
+            for (let k = 0; k < letters.length; k++) {
+                ctx.font = "20px serif";
+                ctx.fillText('[k]', i, j);
+            };
+        };
+    };
+};
 
-//     for (let i = 0; i < canvas.width; i += w) {
-//         Xcounter--;
-//         for (let j = 0; j < canvas.height; j += h) {
-//             Ycounter--;
-//             x = i - w * Xcounter;
-//             y = j - h * Ycounter;
-//             arrayOfNeededXCoordinates.push(x)
-//             arrayOfNeededYCoordinates.push(y);
-//         };
-//     };
-
-//     for (let k = 0; k < letters.length; k++) {
-//         ctx.font = "20px serif";
-//         ctx.fillText(letters[k], arrayOfNeededXCoordinates[k], arrayOfNeededYCoordinates[k]);
-//     };
+// for (let k = 0; k < letters.length; k++) {
+//     ctx.font = "20px serif";
+//     ctx.fillText(letters[k], i, j);
 // };
 
-// drawGrid(64, 25);
-// console.log(letters.length);
+drawGrid(64, 25);
