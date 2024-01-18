@@ -202,23 +202,24 @@ let countries = [
 
 let letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
-function drawGrid(w, h) {
+let counterX = 0;
+let counterY = 0;
+
+function drawData(w, h) {
+    counterX = 0;
+    counterY = h;
+
     for (let i = 0; i < canvas.width; i += w) {
         for (let j = 0; j < canvas.height; j += h) {
             ctx.strokeStyle = '#000000';
             ctx.strokeRect(i, j, w, h);
-        };
-    };
 
-    drawData(w, h);
-};
+            counterX += w;
+            counterY += 0;
 
-function drawData(w, h) {
-    for (let i = 0; i < canvas.width; i += w) {
-        for (let j = 0; j < canvas.height; j += h) {
             for (let k = 0; k < letters.length; k++) {
                 ctx.font = "20px serif";
-                ctx.fillText('[k]', i, j);
+                ctx.fillText(letters[k], counterX, counterY);
             };
         };
     };
@@ -229,4 +230,4 @@ function drawData(w, h) {
 //     ctx.fillText(letters[k], i, j);
 // };
 
-drawGrid(64, 25);
+drawData(64, 25);
