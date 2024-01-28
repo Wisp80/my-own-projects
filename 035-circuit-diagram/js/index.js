@@ -3,20 +3,6 @@ const ctx = canvas.getContext('2d');
 
 /*--------------------------------------------------------------------------------*/
 
-function drawTerminal() {
-    ctx.strokeRect(0, 0, canvas.width, 100);
-};
-
-function drawStartingTile() {
-    for (let i = 0; i < 2; i++) {
-        let startingTile = new Tile(180, 200, 100, 50, 'wire');
-        startingTile.draw();
-    };
-};
-
-drawTerminal();
-drawStartingTile();
-
 function Tile(x, y, width, height, type) {
     this.x = x;
     this.y = y;
@@ -67,7 +53,26 @@ function Tile(x, y, width, height, type) {
     };
 };
 
-for (let i = 0; i < 2; i++) {
-    let newTile = new Tile(380, 200, 100, 50, 'lamp');
-    newTile.draw();
+function drawStartingTile() {
+    for (let i = 0; i < 2; i++) {
+        let startingTile = new Tile(180, 200, 100, 50, 'wire');
+        startingTile.draw();
+    };
 };
+
+drawStartingTile();
+
+function drawTerminal() {
+    ctx.strokeRect(0, 0, canvas.width, 100);
+    for (let i = 0; i < 2; i++) {
+        let mainLampTile = Tile(380, 200, 100, 50, 'lamp');
+        mainLampTile.draw();
+    };
+};
+
+drawTerminal();
+
+// for (let i = 0; i < 2; i++) {
+//     let newTile = new Tile(380, 200, 100, 50, 'lamp');
+//     newTile.draw();
+// };
