@@ -65,8 +65,14 @@ drawStartingTile();
 function drawTerminal() {
     ctx.strokeRect(0, 0, canvas.width, 100);
     for (let i = 0; i < 2; i++) {
-        let mainLampTile = Tile(380, 200, 100, 50, 'lamp');
+        let mainWireTile = new Tile(20, 20, 100, 50, 'wire');
+        mainWireTile.draw();
+
+        let mainLampTile = new Tile(220, 20, 100, 50, 'lamp');
         mainLampTile.draw();
+
+        let mainButtonTile = new Tile(420, 20, 100, 50, 'button');
+        mainButtonTile.draw();
     };
 };
 
