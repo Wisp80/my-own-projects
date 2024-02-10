@@ -29,3 +29,15 @@ function Square(x, y, width, height) {
 
 let squareOne = new Square(400, 300, 120, 120);
 squareOne.draw();
+
+let mousePose = {};
+
+let previousTickMouseX = 0;
+let currentTickMouseX = 0;
+let currentMouseDirectionX = 'nowhere';
+
+window.addEventListener('mousemove', (e) => {
+    let bounding = canvas.getBoundingClientRect();
+    mousePose.currentMouseX = e.clientX - bounding.left;
+    mousePose.currentMouseY = e.clientY - bounding.top;
+});
