@@ -21,7 +21,7 @@ function Square(x, y, width, height) {
     this.height = height;
     this.color = getRandomColor();
 
-    this.draw = function() {
+    this.draw = function () {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x, this.y, this.width, this.height);
     };
@@ -41,3 +41,19 @@ window.addEventListener('mousemove', (e) => {
     mousePose.currentMouseX = e.clientX - bounding.left;
     mousePose.currentMouseY = e.clientY - bounding.top;
 });
+
+function showMousePosition() {
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+    setTimeout(() => {
+        showMousePosition();
+    }, 1);
+
+    ctx.fillStyle = "black";
+    ctx.font = "50px serif";
+    ctx.fillText(`currentMouseX: ${mousePose.currentMouseX}`, 50, 90);
+    ctx.fillText(`currentMouseY: ${mousePose.currentMouseY}`, 50, 190);
+};
+
+showMousePosition();
