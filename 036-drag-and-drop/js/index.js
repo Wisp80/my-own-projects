@@ -103,8 +103,8 @@ function moveSquare() {
         squareOne.x += xDifference;
         squareOne.y += yDifference;
 
-        startX++;
-        startY++;
+        startX = mousePose.currentMouseX;
+        startY = mousePose.currentMouseY;
     } else {
         console.log('wjehfg');
     };
