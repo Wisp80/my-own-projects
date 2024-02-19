@@ -3,6 +3,34 @@ const ctx = canvas.getContext('2d');
 
 /*--------------------------------------------------------------------------------*/
 
+let helper = {
+    checkIntersectionBetweenNotRotatedRectangleAndPoint: function (
+        farX, closeX,
+        farY, closeY,
+        pointX, pointY,
+    ) {
+        if (closeX <= pointX &&
+            farX >= pointX &&
+            closeY <= pointY &&
+            farY >= pointY) {
+            return true;
+        } else {
+            return false;
+        };
+    },
+
+    getRandomColor: function () {
+        let letters = '0123456789ABCDEF';
+        let color = '#';
+
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        };
+
+        return color;
+    }
+};
+
 function Tile(x, y, width, height, type) {
     this.x = x;
     this.y = y;
@@ -53,10 +81,17 @@ function Tile(x, y, width, height, type) {
     };
 };
 
+let startingTile = new Tile(180, 200, 100, 50, 'wire');
+let mainWireTile = new Tile(20, 20, 100, 50, 'wire');
+let mainLampTile = new Tile(220, 20, 100, 50, 'lamp');
+let mainButtonTile = new Tile(420, 20, 100, 50, 'button');
+
+let mainTiles = [startingTile, mainWireTile, mainLampTile, mainButtonTile];
+
 function drawStartingTile() {
     for (let i = 0; i < 2; i++) {
-        let startingTile = new Tile(180, 200, 100, 50, 'wire');
-        startingTile.draw();
+        console.log(mainTiles);
+        mainTiles.startingTile.draw();
     };
 };
 
@@ -65,20 +100,56 @@ drawStartingTile();
 function drawTerminal() {
     ctx.strokeRect(0, 0, canvas.width, 100);
     for (let i = 0; i < 2; i++) {
-        let mainWireTile = new Tile(20, 20, 100, 50, 'wire');
-        mainWireTile.draw();
-
-        let mainLampTile = new Tile(220, 20, 100, 50, 'lamp');
-        mainLampTile.draw();
-
-        let mainButtonTile = new Tile(420, 20, 100, 50, 'button');
-        mainButtonTile.draw();
+        mainTiles.mainWireTile.draw();
+        mainTiles.mainLampTile.draw();
+        mainTiles.mainButtonTile.draw();
     };
 };
 
 drawTerminal();
 
-// for (let i = 0; i < 2; i++) {
-//     let newTile = new Tile(380, 200, 100, 50, 'lamp');
-//     newTile.draw();
-// };
+let mousePose = {};
+
+let previousTickMouseX = 0;
+let currentTickMouseX = 0;
+let isMousedown = false;
+let startX = 0;
+let startY = 0;
+
+window.addEventListener('mousemove', (e) => {
+    let bounding = canvas.getBoundingClientRect();
+    mousePose.currentMouseX = e.clientX - bounding.left;
+    mousePose.currentMouseY = e.clientY - bounding.top;
+
+    if (isMousedown === true) {
+        moveSquare();
+    };
+});
+
+window.addEventListener('mousedown', (e) => {
+    startX = mousePose.currentMouseX;
+    startY = mousePose.currentMouseY;
+    isMousedown = true;
+});
+
+window.addEventListener('mouseup', (e) => {
+    isMousedown = false;
+});
+
+function moveSquare() {
+    for (let i = 0; i < mainTiles.length; i++) {
+        if (helper.checkIntersectionBetweenNotRotatedRectangleAndPoint(
+            mainTiles[i].x + mainTiles[i].width, mainTiles[i].x,
+            mainTiles[i].y + mainTiles[i].height, mainTiles[i].y,
+            mousePose.currentMouseX, mousePose.currentMouseY)
+        ) {
+            let xDifference = mousePose.currentMouseX - startX;
+            let yDifference = mousePose.currentMouseY - startY;
+            mainTiles[i].x += xDifference;
+            mainTiles[i].y += yDifference;
+
+            startX = mousePose.currentMouseX;
+            startY = mousePose.currentMouseY;
+        };
+    };
+};

@@ -96,8 +96,6 @@ function moveSquare() {
         squareOne.y + squareOne.height, squareOne.y,
         mousePose.currentMouseX, mousePose.currentMouseY)
     ) {
-        // let xDifference = squareOne.x + squareOne.width - mousePose.currentMouseX;
-        // let yDifference = squareOne.y + squareOne.height - mousePose.currentMouseY;
         let xDifference = mousePose.currentMouseX - startX;
         let yDifference = mousePose.currentMouseY - startY;
         squareOne.x += xDifference;
@@ -106,7 +104,7 @@ function moveSquare() {
         startX = mousePose.currentMouseX;
         startY = mousePose.currentMouseY;
     } else {
-        console.log('wjehfg');
+        console.log('No intersection');
     };
 };
 
