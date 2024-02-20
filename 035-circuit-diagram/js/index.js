@@ -86,11 +86,15 @@ let mainWireTile = new Tile(20, 20, 100, 50, 'wire');
 let mainLampTile = new Tile(220, 20, 100, 50, 'lamp');
 let mainButtonTile = new Tile(420, 20, 100, 50, 'button');
 
-let mainTiles = [startingTile, mainWireTile, mainLampTile, mainButtonTile];
+let mainTiles = {
+    startingTile,
+    mainWireTile,
+    mainLampTile,
+    mainButtonTile
+};
 
 function drawStartingTile() {
     for (let i = 0; i < 2; i++) {
-        console.log(mainTiles);
         mainTiles.startingTile.draw();
     };
 };
