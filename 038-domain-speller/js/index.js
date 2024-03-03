@@ -399,3 +399,21 @@ let countries = [
 ];
 
 let letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
+
+function convertWords() {
+    let wordsToConvert = document.getElementById('words-to-convert').value;
+    let lettersArray = wordsToConvert.match(/.{1,2}/g);
+
+    console.log(lettersArray);
+
+    for (let i = 0; i < lettersArray.length; i++) {
+        for (let j = 0; j < countriesDomains.length; j++) {
+            if (lettersArray[i] === countriesDomains[j].toLowerCase()) {
+                ctx.font = "50px calibri";
+                ctx.fillText(`[${countriesDomains[j]}]`, 100, 90);
+                console.log(countriesDomains[j]);
+                console.log(j);
+            };
+        };
+    };
+};
