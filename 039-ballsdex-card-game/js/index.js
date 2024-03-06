@@ -200,3 +200,38 @@ let countries = [
     "Zambia",
     "Zimbabwe"
 ];
+
+function Card(x, y, name, hp, attack, ability, cardImage, isDead, isCapitalist, isInEU, isInNATO, isDictatorship, hasCoastline, isInArabLeague) {
+    this.x = x;
+    this.y = y;
+    this.name = name;
+    this.hp = hp;
+    this.attack = attack;
+    this.ability = ability;
+    this.cardImage = cardImage;
+    this.isDead = isDead;
+    this.isCapitalist = isCapitalist;
+    this.isInEU = isInEU;
+    this.isInNATO = isInNATO;
+    this.isDictatorship = isDictatorship;
+    this.hasCoastline = hasCoastline;
+    this.isInArabLeague = isInArabLeague;
+};
+
+function doACountryball() {
+    let cardImage = new Image();
+    cardImage.src = './src/nauru-card.png';
+
+    let nauru = new Card(20, 20, 'Nauru', 64, 75, function () {
+        if (nauru.isDead === true) {
+            console.log('wipe out 33% of any country with coastline HP');
+        };
+    }, cardImage, false, true, false, false, false, true, false
+    );
+
+    ctx.drawImage(nauru.cardImage, nauru.x, nauru.y);
+
+    console.log(nauru);
+};
+
+doACountryball();
