@@ -218,20 +218,58 @@ function Card(x, y, name, hp, attack, ability, cardImage, isDead, isCapitalist, 
     this.isInArabLeague = isInArabLeague;
 };
 
-function doACountryball() {
-    let cardImage = new Image();
-    cardImage.src = './src/nauru-card.png';
 
-    let nauru = new Card(20, 20, 'Nauru', 64, 75, function () {
-        if (nauru.isDead === true) {
-            console.log('wipe out 33% of any country with coastline HP');
-        };
-    }, cardImage, false, true, false, false, false, true, false
-    );
 
-    ctx.drawImage(nauru.cardImage, nauru.x, nauru.y);
+let cards = {
+    nauru: new Card(20, 20, 'Nauru', 64, 75,
+        {
+            abilityName: 'Tidal wave',
+            isAbilityPassive: true,
+            ability: function () {
+                if (nauru.isDead === true) {
+                    console.log('wipe out 33% of any country with coastline HP');
+                };
+            }
+        },
 
-    console.log(nauru);
+        {
+            cardImage: new Image(),
+            cardImagesrc: './src/nauru-card.png'
+        }, false, true, false, false, false, true, false
+    ),
+
+    eu: new Card(20, 20, 'EU', 1800, 0,
+        {
+            abilityName: 'Treaty of Rome',
+            isAbilityPassive: true,
+            ability: function () {
+                // if (nauru.isDead === true) {
+                //     console.log('wipe out 33% of any country with coastline HP');
+                // };
+            }
+        },
+
+        {
+            cardImage: new Image(),
+            cardImagesrc: './src/eu-card.png'
+        }, false, true, false, false, false, true, false
+    ),
 };
 
-doACountryball();
+// function doACountryball() {
+//     let newCardImage = new Image();
+//     newCardImage.src = './src/nauru-card.png';
+//     // newCardImage.src = 'http://127.0.0.1:5500/039-ballsdex-card-game/src/nauru-card.png';
+
+//     let nauru = new Card(20, 20, 'Nauru', 64, 75, function () {
+//         if (nauru.isDead === true) {
+//             console.log('wipe out 33% of any country with coastline HP');
+//         };
+//     }, newCardImage, false, true, false, false, false, true, false
+//     );
+
+//     ctx.drawImage(newCardImage, nauru.x, nauru.y);
+//     ctx.fillRect(nauru.x, nauru.y, 34, 34);
+
+//     console.log(nauru);
+// };
