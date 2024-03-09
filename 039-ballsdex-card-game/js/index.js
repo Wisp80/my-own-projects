@@ -201,7 +201,11 @@ let countries = [
     "Zimbabwe"
 ];
 
-function Card(x, y, name, hp, attack, ability, cardImage, isDead, isCapitalist, isInEU, isInNATO, isDictatorship, hasCoastline, isInArabLeague) {
+function Card(
+    x, y, name, hp, attack,
+    ability, cardImage,
+    isDead, isCapitalist, isInEU, isInNATO, formOfGovernment, hasCoastline, isInArabLeague
+) {
     this.x = x;
     this.y = y;
     this.name = name;
@@ -213,12 +217,10 @@ function Card(x, y, name, hp, attack, ability, cardImage, isDead, isCapitalist, 
     this.isCapitalist = isCapitalist;
     this.isInEU = isInEU;
     this.isInNATO = isInNATO;
-    this.isDictatorship = isDictatorship;
+    this.formOfGovernment = formOfGovernment;
     this.hasCoastline = hasCoastline;
     this.isInArabLeague = isInArabLeague;
 };
-
-
 
 let cards = {
     nauru: new Card(20, 20, 'Nauru', 64, 75,
@@ -233,9 +235,9 @@ let cards = {
         },
 
         {
-            cardImage: new Image(),
+            cardImage: new Image(100, 120),
             cardImagesrc: './src/nauru-card.png'
-        }, false, true, false, false, false, true, false
+        }, false, true, false, false, 'democracy', true, false
     ),
 
     eu: new Card(20, 20, 'EU', 1800, 0,
@@ -250,26 +252,34 @@ let cards = {
         },
 
         {
-            cardImage: new Image(),
+            cardImage: new Image(142, 200),
             cardImagesrc: './src/eu-card.png'
-        }, false, true, false, false, false, true, false
+        }, false, true, false, false, 'democracy', true, false
+    ),
+
+    oman: new Card(20, 20, 'Oman', 333, 47,
+        {
+            abilityName: 'You want oil?',
+            isAbilityPassive: true,
+            ability: function () {
+                // if (nauru.isDead === true) {
+                //     console.log('wipe out 33% of any country with coastline HP');
+                // };
+            }
+        },
+
+        {
+            cardImage: new Image(142, 200),
+            cardImagesrc: './src/eu-card.png'
+        }, false, true, false, false, 'monarchist', true, true
     ),
 };
 
-// function doACountryball() {
-//     let newCardImage = new Image();
-//     newCardImage.src = './src/nauru-card.png';
-//     // newCardImage.src = 'http://127.0.0.1:5500/039-ballsdex-card-game/src/nauru-card.png';
+cards.eu.cardImage.cardImage.src = cards.eu.cardImage.cardImagesrc;
+cards.eu.cardImage.cardImage.onload = () => {
+    ctx.drawImage(cards.eu.cardImage.cardImage, 20, 20, 1420 * 0.18, 2000 * 0.18)
+};
 
-//     let nauru = new Card(20, 20, 'Nauru', 64, 75, function () {
-//         if (nauru.isDead === true) {
-//             console.log('wipe out 33% of any country with coastline HP');
-//         };
-//     }, newCardImage, false, true, false, false, false, true, false
-//     );
-
-//     ctx.drawImage(newCardImage, nauru.x, nauru.y);
-//     ctx.fillRect(nauru.x, nauru.y, 34, 34);
-
-//     console.log(nauru);
-// };
+let yourHand = [
+    cards.eu, cards.nauru
+];
