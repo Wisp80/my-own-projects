@@ -270,9 +270,26 @@ let cards = {
 
         {
             cardImage: new Image(142, 200),
-            cardImagesrc: './src/eu-card.png'
+            cardImagesrc: './src/oman-card.png'
         }, false, true, false, false, 'monarchist', true, true
     ),
+
+    vietnam: new Card(20, 20, 'Vietnam', 1440, 210,
+    {
+        abilityName: 'No more capitalism',
+        isAbilityPassive: true,
+        ability: function () {
+            // if (nauru.isDead === true) {
+            //     console.log('wipe out 33% of any country with coastline HP');
+            // };
+        }
+    },
+
+    {
+        cardImage: new Image(142, 200),
+        cardImagesrc: './src/vietnam-card.png'
+    }, false, false, false, false, 'dictatorship', true, false
+),
 };
 
 cards.eu.cardImage.cardImage.src = cards.eu.cardImage.cardImagesrc;
