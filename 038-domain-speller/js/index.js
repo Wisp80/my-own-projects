@@ -1,5 +1,7 @@
 const canvas = document.getElementsByClassName('canvas-one')[0];
 const ctx = canvas.getContext('2d');
+ctx.font = '50px calibri';
+
 
 /*--------------------------------------------------------------------------------*/
 
@@ -398,30 +400,51 @@ let countries = [
     "Zimbabwe"
 ];
 
-let letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
+// function convertWords() {
+//     let wordsToConvert = document.getElementById('words-to-convert').value.toUpperCase();
+//     let syllablesArray = wordsToConvert.match(/.{1,2}/g);
+//     let shiftX = 100;
 
-function convertWords() {
-    let wordsToConvert = document.getElementById('words-to-convert').value;
-    let lettersArray = wordsToConvert.match(/.{1,2}/g);
-    let counterX = 100;
+//     console.log(syllablesArray);
 
-    console.log(lettersArray);
+//     // RU WD FR
+//     label: for (let i = 0; i < syllablesArray.length; i++) {
+//         for (let j = 0; j < countriesDomains.length; j++) {
+//             if (syllablesArray[i] === countriesDomains[j]) {
+//                 ctx.fillText(`[${countriesDomains[j]}]`, shiftX, 90);
+//                 shiftX += 100;
+//                 continue label;
+//             };
+//         };
 
-    for (let i = 0; i < lettersArray.length; i++) {
-        label: for (let j = 0; j < countriesDomains.length; j++) {
-            if (lettersArray[i] === countriesDomains[j].toLowerCase()) {
-                ctx.font = "50px calibri";
-                ctx.fillText(`[${countriesDomains[j]}]`, counterX, 90);
+//         ctx.fillText(`${syllablesArray[i].toUpperCase()}`, shiftX, 90);
+//         shiftX += 100;
+//     };
+// };
 
-                console.log(countriesDomains[j]);
-                console.log(j);
+function convertWords2() {
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-                break label;
-            } else {
-                ctx.font = "50px calibri";
-                ctx.fillText(`${lettersArray[i].toUpperCase()}`, counterX, 90);
-            };
+    let stringToConvert = document.getElementById('words-to-convert').value.toUpperCase();
+    // 0123456789
+    // WRUWD[FR]2345
+    for (let i = 0; i < countriesDomains.length; i++) {
+        if (stringToConvert.includes(countriesDomains[i])) {
+            let openBracketIndex = stringToConvert.indexOf(countriesDomains[i]); // 5
+            let firstPartOfTheString = stringToConvert.slice(0, openBracketIndex) // 'WRUWD' 
+            let lastPartOfTheString = stringToConvert.slice(openBracketIndex + 2); // '2345'
+            stringToConvert = firstPartOfTheString + '[' + countriesDomains[i] + ']' + lastPartOfTheString;
+            //  'WRUWD' + '[' + 'FR'+ ']' + '2345' 
         };
-        counterX += 100;
     };
+
+    ctx.fillStyle = 'black';
+    ctx.fillText(stringToConvert, 100, 90);
 };
+
+// function showMentionedCountries(convertedString) {
+//     for (let i = 0; i < convertedString.length; i++) {
+        
+//     }
+// };
