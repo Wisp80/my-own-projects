@@ -29,7 +29,7 @@ const helper = {
             return false;
         };
     },
-    
+
 
     findTheSmallestElementInArrayOfNumbers: function (arr) {
         let smallestElement = null;
@@ -60,5 +60,10 @@ const helper = {
 
     randomIntFromInterval: function (min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
+    },
+
+    chooseRandomString: function (strings) {
+        let randomIndex = Math.floor(Math.random() * strings.length);
+        return strings[randomIndex];
     }
 };
