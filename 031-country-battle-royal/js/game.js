@@ -92,12 +92,12 @@ function Country(
     };
 };
 
-let countries = [
-    new Country(100, helper.getRandomColor(), helper.randomIntFromInterval(100000, 500000000)),
-    new Country(100, helper.getRandomColor(), helper.randomIntFromInterval(100000, 500000000)),
-    new Country(100, helper.getRandomColor(), helper.randomIntFromInterval(100000, 500000000)),
-    new Country(100, helper.getRandomColor(), helper.randomIntFromInterval(100000, 500000000)),
-];
+// let countries = [
+//     new Country(100, helper.getRandomColor(), helper.randomIntFromInterval(100000, 500000000)),
+//     new Country(100, helper.getRandomColor(), helper.randomIntFromInterval(100000, 500000000)),
+//     new Country(100, helper.getRandomColor(), helper.randomIntFromInterval(100000, 500000000)),
+//     new Country(100, helper.getRandomColor(), helper.randomIntFromInterval(100000, 500000000)),
+// ];
 
 // function createCountries() {
 //     for (let i = 0; i < countries.length; i++) {
