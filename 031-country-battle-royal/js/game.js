@@ -1,6 +1,8 @@
 const game = {
     randomSqureXBasedOnRandomPoint: 0,
     randomSqureYBasedOnRandomPoint: 0,
+    hasYellowTileAppeared: false,
+    tilesPassedSinceYellowTileAppeared: 0,
     coordinates: [0, 0, 0, 0],
 
     randomSqureXBasedOnRandomPoints: [
@@ -25,57 +27,31 @@ const game = {
 
         for (let i = 0; i < canvas.width; i += w) {
             for (let j = 0; j < canvas.height; j += h) {
-                ctx.strokeStyle = '#1b1b1b';
-                ctx.strokeRect(i, j, w, h);
+                // ctx.strokeStyle = '#1b1b1b';
+                // ctx.strokeRect(i, j, w, h);
+
+                // if (this.hasYellowTileAppeared === true && this.tilesPassedSinceYellowTileAppeared < 10) {
+                //     this.tilesPassedSinceYellowTileAppeared++;
+                //     continue;
+                // };
 
                 ctx.fillStyle = helper.chooseRandomString(this.worldTilesColors);
                 ctx.fillRect(i, j, w, h);
 
                 if (helper.checkIntersectionBetweenNotRotatedRectangleAndPoint(i + w, i, j + h, j, randomPointX, randomPointY)) {
+                    this.hasYellowTileAppeared = true;
                     console.log('here');
                     let randomTopLeftSquarePointX = i;
                     let randomTopLeftSquarePointY = j;
-                    // ctx.fillStyle = 'yellow';
-                    // ctx.fillRect(
-                    //     Math.min(...this.randomSqureXBasedOnRandomPoints) - w,
-                    //     Math.min(...this.randomSqureYBasedOnRandomPoints) - h,
-                    //     Math.max(...this.randomSqureXBasedOnRandomPoints) - Math.min(...this.randomSqureXBasedOnRandomPoints) + 2 * w,
-                    //     Math.max(...this.randomSqureYBasedOnRandomPoints) - Math.min(...this.randomSqureYBasedOnRandomPoints) + 2 * h
-                    // );
-
-                    // ctx.fillStyle = 'yellow';
-                    // ctx.fillRect(randomTopLeftSquarePointX, randomTopLeftSquarePointY, w * 10, h * 10);
+                    ctx.fillStyle = 'yellow';
+                    ctx.fillRect(randomTopLeftSquarePointX, randomTopLeftSquarePointY, w * 10, h * 10);
                 };
-
-                // if (helper.checkIntersectionBetweenNotRotatedRectangleAndPoint(i + w, i, j + h, j, randomPointX, randomPointY)) {
-                //     let randomTopLeftSquarePointX = i;
-                //     let randomTopLeftSquarePointY = j;
-                //     this.coordinates[0] = i;
-                //     this.coordinates[1] = j;
-                //     // console.log(randomTopLeftSquarePointX);
-                //     // console.log(randomTopLeftSquarePointY);
-                //     ctx.fillStyle = "blue";
-                //     ctx.fillRect(randomTopLeftSquarePointX, randomTopLeftSquarePointY, 40, 40);
-                // };
-
-                // if (helper.checkIntersectionBetweenNotRotatedRectangleAndPoint(i + w, i, j + h, j, randomPointXTwo, randomPointYTwo)) {
-                //     let randomTopLeftSquarePointX = i;
-                //     let randomTopLeftSquarePointY = j;
-                //     this.coordinates[2] = i;
-                //     this.coordinates[3] = j;
-
-                //     // console.log(randomTopLeftSquarePointX);
-                //     // console.log(randomTopLeftSquarePointY);
-                //     ctx.fillStyle = "blue";
-                //     ctx.fillRect(randomTopLeftSquarePointX, randomTopLeftSquarePointY, 40, 40);
-                //     console.log(this.coordinates);
-                // };
             };
         };
     },
 };
 
-game.drawGrid(40, 40);
+game.drawGrid(20, 20);
 
 //-------------------------------------------------------------------------------------------------------------------//
 
