@@ -24,28 +24,32 @@ const game = {
     drawGrid: function (w, h) {
         let randomPointX = this.randomSqureXBasedOnRandomPoints[0];
         let randomPointY = this.randomSqureYBasedOnRandomPoints[0];
+        let squareID = 0;
 
         for (let i = 0; i < canvas.width; i += w) {
             for (let j = 0; j < canvas.height; j += h) {
-                // ctx.strokeStyle = '#1b1b1b';
-                // ctx.strokeRect(i, j, w, h);
-
-                // if (this.hasYellowTileAppeared === true && this.tilesPassedSinceYellowTileAppeared < 10) {
-                //     this.tilesPassedSinceYellowTileAppeared++;
-                //     continue;
-                // };
-
                 ctx.fillStyle = helper.chooseRandomString(this.worldTilesColors);
                 ctx.fillRect(i, j, w, h);
 
                 if (helper.checkIntersectionBetweenNotRotatedRectangleAndPoint(i + w, i, j + h, j, randomPointX, randomPointY)) {
                     this.hasYellowTileAppeared = true;
+
                     console.log('here');
+
                     let randomTopLeftSquarePointX = i;
                     let randomTopLeftSquarePointY = j;
+
                     ctx.fillStyle = 'yellow';
-                    ctx.fillRect(randomTopLeftSquarePointX, randomTopLeftSquarePointY, w * 10, h * 10);
+                    ctx.fillRect(randomTopLeftSquarePointX, randomTopLeftSquarePointY, w, h);
+
+                    // for (let k = 0; k < squareID + 10; k++) {
+                    //     ctx.fillStyle = 'yellow';
+                    //     ctx.fillRect(randomTopLeftSquarePointX, randomTopLeftSquarePointY, w, h);
+                    // };
                 };
+
+                // console.log(squareID);
+                squareID++;
             };
         };
     },
