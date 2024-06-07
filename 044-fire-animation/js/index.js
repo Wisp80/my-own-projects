@@ -18,16 +18,29 @@ function getRandomNumber(max) {
     return Math.floor(Math.random() * max);
 };
 
+let radius = 200;
+let radiusTwo = 400;
+let i = 0;
+let steps = 10;
+let xOne;
+let yOne;
+let xTwo;
+let yTwo;
+
+let bigCircleRadius = 70;
+let bigCircleColor = getRandomColor();
+
+let smallCircleRadius = 68;
+let smallCircleColor = 'white'
+
 function fire() {
-    // setTimeout(() => {
-    //     fire();
-    // }, 100);
+    xOne = (canvas.width / 2 + radius * Math.cos(2 * Math.PI * i / steps));
+    yOne = (canvas.height / 2 + radius * Math.sin(2 * Math.PI * i / steps));
 
-    let bigCircleRadius = 70;
-    let bigCircleColor = getRandomColor();
+    xTwo = (canvas.width / 2 - radius * Math.cos(2 * Math.PI * i / steps));
+    yTwo = (canvas.height / 2 - radius * Math.sin(2 * Math.PI * i / steps));
 
-    let smallCircleRadius = 68;
-    let smallCircleColor = 'white'
+    i = i + 0.05;
 
     ctx.beginPath();
     ctx.arc(canvas.width / 2, canvas.height / 2, bigCircleRadius, 0, 2 * Math.PI, false);
@@ -50,4 +63,6 @@ function fire() {
     ctx.fill();
 };
 
-fire();
+setTimeout(() => {
+    fire();
+}, 1);
