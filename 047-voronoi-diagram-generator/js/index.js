@@ -5,22 +5,22 @@ window.onload = function () {
     // controls.initializePlayersControlsListening();
 };
 
+let mousePos = { x: undefined, y: undefined };
+
+window.addEventListener('mousemove', (event) => {
+    mousePos = { x: event.clientX, y: event.clientY };
+});
+
 let mainPoints = [
-    [helper.randomIntFromInterval(0, 795), helper.randomIntFromInterval(0, 795), helper.getRandomColor()],
-    [helper.randomIntFromInterval(0, 795), helper.randomIntFromInterval(0, 795), helper.getRandomColor()],
-    [helper.randomIntFromInterval(0, 795), helper.randomIntFromInterval(0, 795), helper.getRandomColor()],
-    [helper.randomIntFromInterval(0, 795), helper.randomIntFromInterval(0, 795), helper.getRandomColor()],
-    [helper.randomIntFromInterval(0, 795), helper.randomIntFromInterval(0, 795), helper.getRandomColor()],
-    [helper.randomIntFromInterval(0, 795), helper.randomIntFromInterval(0, 795), helper.getRandomColor()],
-    [helper.randomIntFromInterval(0, 795), helper.randomIntFromInterval(0, 795), helper.getRandomColor()],
-    [helper.randomIntFromInterval(0, 795), helper.randomIntFromInterval(0, 795), helper.getRandomColor()],
-    [helper.randomIntFromInterval(0, 795), helper.randomIntFromInterval(0, 795), helper.getRandomColor()],
-    [helper.randomIntFromInterval(0, 795), helper.randomIntFromInterval(0, 795), helper.getRandomColor()],
-    [helper.randomIntFromInterval(0, 795), helper.randomIntFromInterval(0, 795), helper.getRandomColor()],
-    [helper.randomIntFromInterval(0, 795), helper.randomIntFromInterval(0, 795), helper.getRandomColor()],
-    [helper.randomIntFromInterval(0, 795), helper.randomIntFromInterval(0, 795), helper.getRandomColor()],
-    [helper.randomIntFromInterval(0, 795), helper.randomIntFromInterval(0, 795), helper.getRandomColor()],
-    [helper.randomIntFromInterval(0, 795), helper.randomIntFromInterval(0, 795), helper.getRandomColor()],
+    [helper.randomIntFromInterval(0, 195), helper.randomIntFromInterval(0, 195), helper.getRandomColor()],
+    [helper.randomIntFromInterval(0, 195), helper.randomIntFromInterval(0, 195), helper.getRandomColor()],
+    [helper.randomIntFromInterval(0, 195), helper.randomIntFromInterval(0, 195), helper.getRandomColor()],
+    [helper.randomIntFromInterval(0, 195), helper.randomIntFromInterval(0, 195), helper.getRandomColor()],
+    [helper.randomIntFromInterval(0, 195), helper.randomIntFromInterval(0, 195), helper.getRandomColor()],
+    [helper.randomIntFromInterval(0, 195), helper.randomIntFromInterval(0, 195), helper.getRandomColor()],
+    [helper.randomIntFromInterval(0, 195), helper.randomIntFromInterval(0, 195), helper.getRandomColor()],
+    [helper.randomIntFromInterval(0, 195), helper.randomIntFromInterval(0, 195), helper.getRandomColor()],
+    [helper.randomIntFromInterval(0, 195), helper.randomIntFromInterval(0, 195), helper.getRandomColor()],
 ];
 
 function getDistanceBetweenTwoPixels(x1, y1, x2, y2) {
@@ -56,6 +56,9 @@ function draw() {
             ctx.fillStyle = mainPoints[closestPointIndex][2];
             ctx.fillRect(i, j, 1, 1);
 
+            ctx.fillStyle = 'red';
+            ctx.fillRect(i, j, 1, 1);
+
             distanceBetweenThisPixelAndPointOne = getDistanceBetweenTwoPixels(i, j, mainPoints[0][0], mainPoints[0][1]);
             distanceBetweenThisPixelAndPointTwo = getDistanceBetweenTwoPixels(i, j, mainPoints[1][0], mainPoints[1][1]);
         };
@@ -63,10 +66,13 @@ function draw() {
         for (let i = 0; i < mainPoints.length; i++) {
             ctx.fillStyle = 'black';
             ctx.fillRect(mainPoints[i][0], mainPoints[i][1], 5, 5);
-        }
+        };
+
+        ctx.fillStyle = 'black';
+        ctx.fillRect(mousePos.x, mousePos.y, 5, 5);
     };
 };
 
-draw();
-
-//200
+setInterval(() => {
+    draw();
+}, 1);
