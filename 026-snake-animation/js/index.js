@@ -27,16 +27,36 @@ function pickRandomCoordinateFromRectangle(x, y, width, height) {
     let nextX = randomIntFromInterval(x - width, x + width);
     let nextY = randomIntFromInterval(y - height, y + height);
 
+    if (x < width) {
+        nextX = randomIntFromInterval(0, x + width);
+        nextY = randomIntFromInterval(y - height, y + height);
+    };
+
+    if (y < height) {
+        nextX = randomIntFromInterval(x - width, x + width);
+        nextY = randomIntFromInterval(0, y + height);
+    };
+
+    if (y > canvas.height - height) {
+        nextX = randomIntFromInterval(x - width, x + width);
+        nextY = randomIntFromInterval(y - height, canvas.height);
+    };
+
+    if (x > canvas.width - width) {
+        nextX = randomIntFromInterval(x - width, canvas.width);
+        nextY = randomIntFromInterval(y - height, y + height);
+    };
+
     nextCoordinates.x = nextX;
     nextCoordinates.y = nextY;
 };
 
 function draw() {
-    ctx.fillStyle = 'green';
+    ctx.fillStyle = 'rgb(100, 210, 70)';
     ctx.fillRect(nextCoordinates.x, nextCoordinates.y, 30, 30);
-    // ctx.arc(nextCoordinates.x, nextCoordinates.y, 20, 0, 2 * Math.PI);
+    // ctx.strokeRect(nextCoordinates.x, nextCoordinates.y, 30, 30);
     ctx.fill();
-    pickRandomCoordinateFromRectangle(nextCoordinates.x, nextCoordinates.y, 30, 30);    
+    pickRandomCoordinateFromRectangle(nextCoordinates.x, nextCoordinates.y, 30, 30);
 };
 
 setInterval(() => {
