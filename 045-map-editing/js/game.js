@@ -7,14 +7,24 @@ const game = {
                 ctx.strokeStyle = 'black'
                 ctx.strokeRect(i, j, w, h);
 
-                ctx.fillStyle = 'blue'
-                ctx.fillRect(i, j, w, h);
+                this.drawCountry([
+                    [0, 0, w * 24, h * 18],
+                    [0, 360, w * 20, h * 13],
+                    [0, 620, w * 13, h * 13],
+                ], 'red');
 
-                ctx.fillStyle = 'green'
-                ctx.fillRect(i * 8, j * 9, w, h);
-
-                
+                this.drawCountry([
+                    [540, 140, w * 11, h * 7],
+                    [740, 180, w * 3, h * 3],
+                ], 'blue');
             };
+        };
+    },
+
+    drawCountry: function (coordinates, color) {
+        for (let i = 0; i < coordinates.length; i++) {
+            ctx.fillStyle = color;
+            ctx.fillRect(coordinates[i][0], coordinates[i][1], coordinates[i][2], coordinates[i][3]);
         };
     },
 };
