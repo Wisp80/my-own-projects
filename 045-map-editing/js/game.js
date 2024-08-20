@@ -14,8 +14,8 @@ const game = {
                 ], 'red');
 
                 this.drawCountry([
-                    [540, 140, w * 11, h * 7],
-                    [740, 180, w * 3, h * 3],
+                    [480, 140, w * 11, h * 7],
+                    [700, 180, w * 3, h * 3],
                 ], 'blue');
             };
         };
@@ -30,6 +30,34 @@ const game = {
 };
 
 game.drawGrid(20, 20);
+
+//-------------------------------------------------------------------------------------------------------------------//
+
+const mousePose = {
+    currentMouseX: 0,
+    currentMouseY: 0
+};
+
+window.addEventListener('mousemove', (e) => {
+    let bounding = canvas.getBoundingClientRect();
+    mousePose.currentMouseX = e.clientX - bounding.left;
+    mousePose.currentMouseY = e.clientY - bounding.top;
+});
+
+window.addEventListener('click', (e) => {
+    let bounding = canvas.getBoundingClientRect();
+
+    let imageData = ctx.getImageData(mousePose.currentMouseX, mousePose.currentMouseY, 1, 1);
+    let pixelData = imageData.data;
+
+    // if (pixelData[0] === 255 && pixelData[1] === 0 && pixelData[2] === 0) {
+    //     console.log('this is red!!!!');
+    // };
+
+    // console.log(`x: ${mousePose.currentMouseX}`);
+    // console.log(`y: ${mousePose.currentMouseY}`);
+    // console.log(bounding);
+});
 
 //-------------------------------------------------------------------------------------------------------------------//
 
