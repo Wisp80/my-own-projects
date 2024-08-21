@@ -38,6 +38,8 @@ const mousePose = {
     currentMouseY: 0
 };
 
+let isWindowThere = false;
+
 window.addEventListener('mousemove', (e) => {
     let bounding = canvas.getBoundingClientRect();
     mousePose.currentMouseX = e.clientX - bounding.left;
@@ -49,6 +51,12 @@ window.addEventListener('click', (e) => {
 
     let imageData = ctx.getImageData(mousePose.currentMouseX, mousePose.currentMouseY, 1, 1);
     let pixelData = imageData.data;
+
+    if (isWindowThere === false) {
+        ctx.fillStyle = 'rgb(12, 14, 27)'
+        ctx.fillRect(mousePose.currentMouseX, mousePose.currentMouseY, 200, 240);
+        isWindowThere = true;
+    };
 
     // if (pixelData[0] === 255 && pixelData[1] === 0 && pixelData[2] === 0) {
     //     console.log('this is red!!!!');
