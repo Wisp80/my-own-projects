@@ -1,4 +1,6 @@
 const game = {
+    cellWidth: 20,
+    cellHeight: 20,
     worldEvents: ['War', 'Alliance', 'Civil war', 'Unification'],
 
     drawGrid: function (w, h) {
@@ -7,16 +9,16 @@ const game = {
                 ctx.strokeStyle = 'black'
                 ctx.strokeRect(i, j, w, h);
 
-                this.drawCountry([
-                    [0, 0, w * 24, h * 18],
-                    [0, 360, w * 20, h * 13],
-                    [0, 620, w * 13, h * 13],
-                ], 'red');
+                // this.drawCountry([
+                //     [0, 0, w * 24, h * 18],
+                //     [0, 360, w * 20, h * 13],
+                //     [0, 620, w * 13, h * 13],
+                // ], 'red');
 
-                this.drawCountry([
-                    [480, 140, w * 11, h * 7],
-                    [700, 180, w * 3, h * 3],
-                ], 'blue');
+                // this.drawCountry([
+                //     [480, 140, w * 11, h * 7],
+                //     [700, 180, w * 3, h * 3],
+                // ], 'blue');
             };
         };
     },
@@ -29,7 +31,7 @@ const game = {
     },
 };
 
-game.drawGrid(20, 20);
+game.drawGrid(game.cellWidth, game.cellHeight);
 
 //-------------------------------------------------------------------------------------------------------------------//
 
@@ -83,29 +85,34 @@ window.addEventListener('click', (e) => {
 
 //-------------------------------------------------------------------------------------------------------------------//
 
-// class Country {
-//     constructor(points, color, population) {
-//         this.points = points;
-//         this.color = color;
-//         this.population = population;
-//     }
+class Country {
+    constructor(coordinates, points, color, population) {
+        this.coordinates = coordinates
+        this.points = points;
+        this.color = color;
+        this.population = population;
+    }
 
-//     drawCountry(coordinates, color) {
-//         for (let i = 0; i < coordinates.length; i++) {
-//             ctx.fillStyle = color;
-//             ctx.fillRect(coordinates[i][0], coordinates[i][1], coordinates[i][2], coordinates[i][3]);
-//         };
-//     }
+    drawCountry(coordinates, color) {
+        for (let i = 0; i < coordinates.length; i++) {
+            ctx.fillStyle = color;
+            ctx.fillRect(coordinates[i][0], coordinates[i][1], coordinates[i][2], coordinates[i][3]);
+        };
+    }
 
-//     draw() {
-//         this.drawCountry([
-//             [0, 0, w * 24, h * 18],
-//             [0, 360, w * 20, h * 13],
-//             [0, 620, w * 13, h * 13],
-//         ], 'red');
-//     }
-// };
+    draw() {
+        this.drawCountry([
+            [0, 0, game.cellWidth * 24, game.cellHeight * 18],
+            [0, 360, game.cellWidth * 20, game.cellHeight * 13],
+            [0, 620, game.cellWidth * 13, game.cellHeight * 13],
+        ], this.color);
+    }
+};
 
-// let countries = [
-//     new Country(0, helper.getRandomColor(), helper.randomIntFromInterval(100000, 500000000)),
-// ];
+let countries = [
+    new Country([], 0, helper.getRandomColor(), helper.randomIntFromInterval(100000, 500000000)),
+];
+
+for (let i = 0; i < countries.length; i++) {
+    countries[i].draw();
+};
