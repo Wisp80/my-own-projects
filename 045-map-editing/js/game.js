@@ -1,7 +1,6 @@
 const game = {
     cellWidth: 20,
     cellHeight: 20,
-    worldEvents: ['War', 'Alliance', 'Civil war', 'Unification'],
 
     drawGrid: function (w, h) {
         for (let i = 0; i < canvas.width; i += w) {
@@ -85,6 +84,16 @@ window.addEventListener('click', (e) => {
 
 //-------------------------------------------------------------------------------------------------------------------//
 
+let worldEvents = {
+    eventsList: ['War', 'Alliance', 'Civil war', 'Unification'],
+
+    war: function() {
+
+    }
+};
+
+//-------------------------------------------------------------------------------------------------------------------//
+
 class Country {
     constructor(coordinates, points, color, population) {
         this.coordinates = coordinates
@@ -101,18 +110,20 @@ class Country {
     }
 
     draw() {
-        this.drawCountry([
-            [0, 0, game.cellWidth * 24, game.cellHeight * 18],
-            [0, 360, game.cellWidth * 20, game.cellHeight * 13],
-            [0, 620, game.cellWidth * 13, game.cellHeight * 13],
-        ], this.color);
+        this.drawCountry(this.coordinates, this.color);
     }
 };
 
 let countries = [
-    new Country([], 0, helper.getRandomColor(), helper.randomIntFromInterval(100000, 500000000)),
+    new Country([
+        [0, 0, game.cellWidth * 24, game.cellHeight * 18],
+        [0, 360, game.cellWidth * 20, game.cellHeight * 13],
+        [0, 620, game.cellWidth * 13, game.cellHeight * 13],
+    ], 0, helper.getRandomColor(), helper.randomIntFromInterval(100000, 500000000)),
 ];
 
 for (let i = 0; i < countries.length; i++) {
     countries[i].draw();
 };
+
+//-------------------------------------------------------------------------------------------------------------------//
