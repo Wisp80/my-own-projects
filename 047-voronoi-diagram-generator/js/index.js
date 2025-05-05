@@ -56,7 +56,7 @@ function draw() {
             ctx.fillStyle = mainPoints[closestPointIndex][2];
             ctx.fillRect(i, j, 1, 1);
 
-            ctx.fillStyle = 'red';
+            // ctx.fillStyle = 'red';
             ctx.fillRect(i, j, 1, 1);
 
             distanceBetweenThisPixelAndPointOne = getDistanceBetweenTwoPixels(i, j, mainPoints[0][0], mainPoints[0][1]);
